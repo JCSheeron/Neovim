@@ -1,0 +1,4 @@
+# ignore .orig files
+*.orig
+# We want the bundle folder, but want to ignore most of the contents.
+# Deal with this in the bundle/.gitignore file

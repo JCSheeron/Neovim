@@ -1,0 +1,13 @@
+# make this file to make it easy to exclude stuff later
+#
+# exclusions here
+#
+# ignore the *.orig files
+*.orig
+# keep the .vim files
+!*.vim
+# keep the .gitignore file
+!.gitignore
+# keep the python files
+!*.py
+
