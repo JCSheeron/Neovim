@@ -21,7 +21,7 @@ set swapfile
 set backupext=.bak
 set undodir=~/.config/nvim/.undo//
 set backupdir=~/.config/nvim/.backup//
-set directory=~/.config/vim/.swap//
+set directory=~/.config/nvim/.swap//
 " make the first backup special
 set patchmode=.orig
 
@@ -186,13 +186,8 @@ set fileformat=unix
 set fileformats=unix,dos
 
 " **** Color scheme (terminal)
-set t_Co=256
-set background=dark
-let g:solarized_termcolors=256
-let g:solarized_termtrans=1
-" put https://raw.github.com/altercation/vim-colors-solarized/master/colors/solarized.vim
-" in ~/.vim/colors/ and uncomment:
-colorscheme solarized
+"set t_Co=256
+
 " set spelling errors to use underlines rather than red squiggly in terminals.
 " The red squiggly does not show up in terminals.
 " from solarized.vim color scheme file (for reference, not to be uncommented)
@@ -235,6 +230,9 @@ filetype plugin indent off
 " initiate vim-plug
 call plug#begin('~/.config/nvim/bundle/')
 
+" Palenight solorscheme
+Plug 'drewtempelmeyer/palenight.vim'
+
 " nerdtree file tree
 Plug 'scrooloose/nerdtree'
 " toggle on leader n or Ctrl-n
@@ -268,16 +266,27 @@ Plug 'kshenoy/vim-signature'
 
 " coc for auto complete, linting, code fixing
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-" use <tab> for trigger completion and navigate to next complete item
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~ '\s'
-endfunction
-
+" Use tab for trigger completion with characters ahead and navigate.
+" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :
       \ <SID>check_back_space() ? "\<TAB>" :
       \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Use <c-space> to trigger completion.
+inoremap <silent><expr> <c-space> coc#refresh()
+
+" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
+" Coc only does snippet and additional edit on confirm.
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+" Or use `complete_info` if your vim support it, like:
+" inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
 
 "Close preview window when completion is done.
 " autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
@@ -364,8 +373,8 @@ Plug 'neomake/neomake'
 " Integrate vim with pandoc converter and 
 " support for pandoc markdown.
 " Syntax checker isn't required, but is strongly recommended
-" Plug 'vim-pandoc/vim-pandoc'
-" Plug 'vim-pandoc/vim-pandoc-syntax'
+Plug 'vim-pandoc/vim-pandoc'
+Plug 'vim-pandoc/vim-pandoc-syntax'
 " Enable pandoc functionality for markdown files while using the markdown
 " file type and syntax.
 " Setting `pandoc#filetypes#pandoc_markdown` to 0 will disable all pandoc
@@ -417,6 +426,8 @@ Plug 'itchyny/lightline.vim'
     \ 'component_expand': { 'syntastic': 'SyntasticStatuslineFlag' },
     \ 'component_type': { 'syntastic': 'error' }
     \}
+let g:lightline.colorscheme = 'palenight'
+
 " use this funcion to display the spelling info in the status line.
 " Spelling language and spelling file it is specified
 function! SpellInfo()
@@ -483,6 +494,23 @@ filetype plugin indent on
 
 " ---------------------- End Plugin Management ----------------------
 "
+" ---------------------- Color Schemes ----------------------
+"  Do after plugin stuff, otherwise there seems to be problems. Not sure why.
+" Palenight
+set background=dark
+colorscheme palenight
+
+" Solarized
+"let g:solarized_termcolors=256
+"let g:solarized_termtrans=1
+" put https://raw.github.com/altercation/vim-colors-solarized/master/colors/solarized.vim
+" in ~/.config/nvim/colors/ and uncomment:
+"colorscheme solarized
+ 
+if (has("termguicolors"))                                                               
+  set termguicolors                                                                     
+endif
+" 
 " Syntax check when writing to a buffer 
 " This needs to come after plugin management i.e. after call plug#end()
 call neomake#configure#automake('w')

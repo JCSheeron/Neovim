@@ -106,7 +106,7 @@ iabbrev befoer before
 iabbrev beggining beginning
 iabbrev begining beginning
 iabbrev beginining beginning
-iabbrev being bieng
+iabbrev bieng being
 iabbrev beleiev believe
 iabbrev beleieve believe
 iabbrev beleif belief
@@ -499,6 +499,7 @@ iabbrev ofthe of the
 iabbrev oging going
 iabbrev ohter other
 iabbrev omre more
+iabbrev onec once
 iabbrev oneof one of
 iabbrev onepoint one point
 iabbrev onthe on the
