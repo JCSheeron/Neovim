@@ -40,9 +40,7 @@ set ruler
 set laststatus=2 
 
 " last line
-" showmode i snot needed with lightline
-"set showmode
-set noshowmode
+set showmode
 set showcmd
 
 " help quick screen redraw
@@ -176,14 +174,12 @@ set fileformat=unix
 set fileformats=unix,dos
 
 " **** Color scheme (terminal)
-set t_Co=256
 set background=dark
 colorscheme desert
 
-" set the color theme to wombat256
-"colorscheme wombat256
-" and set the mark color to DarkSlateGray
-"highlight ColorColumn ctermbg=lightgray guibg=lightgray
+if (has("termguicolors"))                                                               
+  set termguicolors                                                                     
+endif
 
 " **** Other settings
 
