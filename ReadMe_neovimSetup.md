@@ -84,3 +84,9 @@ clipboard support or no clipboard provider, there are several provider
 options, but one is xclip. Install xclip:
 `sudo apt-get install xclip`
 
+# Make Veovim the default editor
+sudo update-alternatives --config vi
+sudo update-alternatives --config vim
+sudo update-alternatives --config editor
+
+
