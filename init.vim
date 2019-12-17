@@ -293,7 +293,8 @@ inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
 
 "Use Denite for fuzzy file finding, file management, and project searching.
-Plug 'Shougo/denite.nvim'
+" Note:  denite requires Python 3.6
+" Plug 'Shougo/denite.nvim'
 
 "" *** Denite setup
 "" Use ripgrep for searching current directory for files
