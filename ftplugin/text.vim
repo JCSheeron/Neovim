@@ -63,8 +63,10 @@ setlocal spell spelllang=en_us
 " set thesaurus+= <path to thesaurus file>
 " set complete+=s
 "
+
 "load auto corrections (Auto Complete List ACL) as abbreviations
-if filereadable(expand('$HOME/.vim/abbreviations/aclAbbrev.vim'))
-  source $HOME/.vim/abbreviations/aclAbbrev.vim
+if filereadable(expand('$HOME/.config/nvim/abbreviations/aclAbbrev.vim'))
+  source $HOME/.config/nvim/abbreviations/aclAbbrev.vim
 endif
+
 
