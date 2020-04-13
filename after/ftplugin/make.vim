@@ -1,4 +1,4 @@
-" File ~/.vim/ftplugin/make.vim
+" File ~/.vim/after/ftplugin/make.vim
 "
 " make specific settings
 setlocal textwidth=85

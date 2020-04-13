@@ -1,4 +1,4 @@
-" File ~/.vim/ftplugin/python.vim
+" File ~/.vim/after/ftplugin/python.vim
 "
 " key mappings
 "conflicts with vim-pandoc

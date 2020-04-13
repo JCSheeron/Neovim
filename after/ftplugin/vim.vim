@@ -1,4 +1,4 @@
-" File ~/.vim/ftplugin/vim.vim
+" File ~/.vim/after/ftplugin/vim.vim
 "
 " vim specific settings
 setlocal textwidth=100

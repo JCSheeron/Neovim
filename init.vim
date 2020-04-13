@@ -146,6 +146,11 @@ map <leader>vsp :vsp <C-R>=expand("%:p:h") . "/" <CR>
 " i.e. shortcut for :reg/:registers
 nnoremap <silent> "" :registers ".0123456789abcdefghijklmnopqrstuvwxyz-*+%/#<CR>
 
+" remap keys for coc-prettier
+" use leader f for Format
+vmap <leader>f <Plug>(coc-format-selected)
+nmap <leader>f <Plug>(coc-format-selected)
+
 " **** Formatting
 " Indentation
 set expandtab       " use spaces instead of tabs
@@ -266,6 +271,11 @@ Plug 'kshenoy/vim-signature'
 
 " coc for auto complete, linting, code fixing
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+let g:coc_global_extensions = ['coc-css', 'coc-html', 'coc-json', 'coc-prettier', 'coc-tsserver', 'coc-python']
+
+" Set up the command to use :Prettier to format a file
+command! -nargs=0 Prettier :CocCommand prettier.formatFile
+
 " Use tab for trigger completion with characters ahead and navigate.
 " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
 inoremap <silent><expr> <TAB>
@@ -291,6 +301,10 @@ inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 "Close preview window when completion is done.
 " autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
 
+" Use Emmet for Web Dev HTML, CSS, etc.
+ Plug 'mattn/emmet-vim'
+" Emmet default trigger is <c-y>. This is clunky. Redefine.
+let g:user_emmet_leader_key=',' " <,-emmetComand>
 
 "Use Denite for fuzzy file finding, file management, and project searching.
 " Note:  denite requires Python 3.6
@@ -362,6 +376,8 @@ inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 " Syntax checking
 " Use newmake instead of syntastic for syntax checking
 Plug 'neomake/neomake'
+
+Plug 'pangloss/vim-javascript'
 
 " Plug vim-markdown for markdown (markup) support
 " There are seveal options. I tried gabrielelana's version and couldn't tell 
@@ -622,8 +638,9 @@ func! Prose()
     "Limelight
 
 endfu
-command! WP call Prose() " Word Processing
 command! PROSE call Prose()
+
+
 
 
 

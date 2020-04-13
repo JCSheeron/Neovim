@@ -1,4 +1,4 @@
-" File ~/.vim/ftplugin/pandoc.vim
+" File ~/.vim/after/ftplugin/pandoc.vim
 "
 " Vim-pandoc plugin will (usually/always/sometimes?) use markdown.vim or text.vim
 " files first, so those settings don't need to be repeated here.

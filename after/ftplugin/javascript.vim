@@ -1,9 +1,8 @@
-" File ~/.vim/ftplugin/cpp.vim
+" File ~/.vim/after/ftplugin/javascript.vim
 "
 " key mappings
-"conflicts with vim-pandoc
-map <leader>g :YcmCompleter GoToDefinitionElseDeclaration<CR>
-" cpp specific settings
+
+" javascript specific settings
 setlocal textwidth=100
 setlocal tabstop=2
 " For the amount of space used for a new tab use shiftwidth.

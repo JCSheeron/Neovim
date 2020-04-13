@@ -1,4 +1,4 @@
-" File ~/.vim/ftplugin/text.vim
+" File ~/.vim/after/ftplugin/text.vim
 "
 " key mappings
 " Reformat paragraph
