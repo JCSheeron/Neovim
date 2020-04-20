@@ -3,6 +3,7 @@
     "eslint.run": "onSave",
     // "eslint.options": {"configFile": "/home/vmuser1/.config/nvim/.eslintrc.js"},
 
-    "coc.preferences.formatOnSaveFiletypes": ["javascript", "javascriptreact", "css", "html", "python"]
-
+    "coc.preferences.formatOnSaveFiletypes": ["javascript", "javascriptreact", "css", "scss", "html", "python"],
+    // coc-snippets make vim select first item on completion
+    "suggest.noselect": false
 }
