@@ -1,0 +1,107 @@
+snippet ir "import React"
+	import React from 'react';
+snippet irc "import React and component"
+	import React, { Component } from 'react';
+snippet ird "import React and ReactDOM
+	import React from 'react';
+	import ReactDOM from 'react-dom';
+snippet cdm "component did mount"
+	componentDidMount() {
+		${1}
+	}
+snippet cdup "component did update"
+	componentDidUpdate(prevProps, prevState) {
+		${1}
+	}
+snippet cwm "component will mount"
+	componentWillMount() {
+		${1}
+	}
+snippet cwri "component will receive props"
+	componentWillReceiveProps(nextProps) {
+		${1}
+	}
+snippet cwun "component will unmount"
+	componentWillUnmount() {
+		${1}
+	}
+snippet cwu "component will update"
+	componentWillUpdate(nextProps, nextState) {
+		${1}
+	}
+snippet fup "force update"
+	forceUpdate(${1:callback});
+snippet dp "default props"
+	static defaultProps = {
+		${1}: ${2},
+	}
+snippet st "state"
+	state = {
+		${1}: ${2},
+	}
+snippet pt "Prop Types"
+	static propTypes = {
+		${1}: React.PropTypes.${2:type},
+	}
+snippet rfc "React functional component"
+	const ${1:ComponentName} = (${2:props}) => {
+		return (
+			<div className='$1'>
+				$1
+			</div>
+		);
+	}
+
+	export default $1
+snippet rcc "React class component"
+	class ${1:ClassName} extends React.Component {
+		constructor(props) {
+			super(props);
+		}
+
+		state = {
+
+		}
+		render() {
+			return (
+				<div className='$1'>
+					$1
+				</div>
+			);
+		}
+	}
+
+	export default $1
+snippet rdr "React DOM render"
+	ReactDOM.render(${1}, ${2})
+snippet ercc "Reace export class component"
+	export default class ${1:ClassName} extends React.Component {
+		render() {
+			return (
+				${0:<div />}
+			);
+		}
+	}
+snippet ctor
+	constructor() {
+		super();
+		${1}
+	}
+snippet ren
+	render() {
+		return (
+			${1:<div />}
+		);
+	}
+snippet sst
+	this.setState({
+		${1}: ${2}
+	});
+snippet scu
+	shouldComponentUpdate(nextProps, nextState) {
+		${1}
+	}
+snippet prp i
+	this.props.${1}
+snippet ste i
+	this.state.${1}

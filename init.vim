@@ -359,7 +359,9 @@ Plug 'kshenoy/vim-signature'
 
 " coc for auto complete, linting, code fixing
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'honza/vim-snippets'
+" Used honza/vim-snippets as the snippet source. Made a copy in a folder I could control and then
+" removed it so I had control of the snippets
+"Plug 'honza/vim-snippets'
 let g:coc_global_extensions = ['coc-css', 'coc-html', 'coc-json', 'coc-prettier', 'coc-tsserver', 'coc-python', 'coc-snippets']
 
 

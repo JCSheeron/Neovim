@@ -1,0 +1,115 @@
+# Import only React
+snippet ri1 "import React"
+	import React from 'react'
+
+# Import both React and Component
+snippet ri2 "import React and Component
+	import React, { Component } from 'react'
+	import PropTypes from 'prop-types'
+
+# Import both React and ReactCOM
+snippet rid "import React and ReactDOM"
+	import React from 'react'
+	import ReactDOM from 'react-dom'
+
+# React class
+snippet rcla "React Class component"
+	class ${1:MyComponent} extends Component {
+		constructor(props) {
+			super(props)
+
+			this.state = {
+			};
+		}
+		render() {
+			return (
+				${0:<div className='$1'>
+				</div>}
+			);
+		}
+	}
+
+# React constructor
+snippet rcon "React ctor"
+	constructor(props) {
+		super(props)
+
+		this.state = {
+			${1}: ${0},
+		}
+	}
+
+# Proptypes for React Class
+snippet rcpt "React PropTypes"
+	static propTypes = {
+		${1}: PropTypes.${0},
+	}
+
+# Default props for React Class
+snippet rcdp "React Default Props"
+	static defaultProps = {
+		${1}: ${0},
+	}
+
+# Presentational component
+snippet rcom "React Presentational Component"
+	props => {
+		return (
+			${0:<div className='${1}'></div>}
+		)
+	}
+
+# Proptypes for Presentational component
+snippet rpt "React PropTypes for Presentational Component"
+	${1}.propTypes = {
+		${2}: PropTypes.${0},
+	}
+
+# Default props for Presentational component
+snippet rdp "React default PropTypes for Presentational Components"
+	${1}.defaultProps = {
+		${2}: ${0},
+	}
+
+# Lifecycle Methods
+snippet rcdm "React Component Did Mount"
+	componentDidMount() {
+		${0:${VISUAL}}
+	}
+
+snippet rcdup "React Component Did Update"
+	componentDidUpdate(prevProps, prevState) {
+		${0:${VISUAL}}
+	}
+snippet rcwm "React Component Will Mount"
+	componentWillMount() {
+		${0:${VISUAL}}
+	}
+snippet rcwri "React Component Will Receive Props"
+	componentWillReceiveProps(nextProps) {
+		${0:${VISUAL}}
+	}
+snippet rcwun "React Component Will Unmount"
+	componentWillUnmount() {
+		${0:${VISUAL}}
+	}
+snippet rcwu "React Component Will Update"
+	componentWillUpdate(nextProps, nextState) {
+		${0:${VISUAL}}
+	}
+
+# State 
+snippet rsst "React Set state"
+	this.setState({
+		${1}: ${0},
+	})
+
+snippet rtst "React state"
+	this.state.${0}
+
+# Props 
+snippet rp "React Properties"
+	props.${0}
+
+snippet rtp "React Properties"
+	this.props.${0}
