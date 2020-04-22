@@ -1,0 +1,5 @@
+# ignore the contents, but then add back in the bits we want to track
+/*
+# don't ignore the .gitignore or the place holder file.
+!.gitignore
+!placeholder.txt
