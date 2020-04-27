@@ -366,10 +366,11 @@ let g:coc_global_extensions = ['coc-css', 'coc-html', 'coc-json', 'coc-prettier'
 
 
 " Use Emmet for Web Dev HTML, CSS, etc.
- Plug 'mattn/emmet-vim'
+Plug 'mattn/emmet-vim'
+
 " Emmet default trigger is <c-y>. This is clunky. Redefine.
 let g:user_emmet_leader_key=',' " <,-emmetComand>
-
+let g:user_emmet_settings = { 'javascript' : { 'extends' : 'jsx' } }
 
 "Use Denite for fuzzy file finding, file management, and project searching.
 " Note:  denite requires Python 3.6
