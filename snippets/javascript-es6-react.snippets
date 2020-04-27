@@ -2,18 +2,45 @@
 snippet ri1 "import React"
 	import React from 'react'
 
-# Import both React and Component
-snippet ri2 "import React and Component
-	import React, { Component } from 'react'
-	import PropTypes from 'prop-types'
+# Import React Component and prop-types
+snippet ric "import React, Component"
+	import React, { Component } from 'react';
+	import PropTypes from 'prop-types';
 
 # Import both React and ReactCOM
 snippet rid "import React and ReactDOM"
-	import React from 'react'
-	import ReactDOM from 'react-dom'
+	import React from 'react';
+	import ReactDOM from 'react-dom';
+
+# Import Proptypes
+snippet rip "import React prop-types"
+	import PropTypes from 'prop-types';
+
+# React function
+snippet rfn "React function"
+	${1:FunctionName}(${2:args}) {
+		return (
+		};
+	}
+
+# React arrow function
+snippet raf "React arrow function"
+	const ${1:ComponentName} = (${2:props}) => {
+		return {
+		};
+	}
+# React functional component
+snippet rfc "React functional component"
+	const ${1:ComponentName} = (${2:props}) => {
+		return (
+			<div className='$1'>
+				$1
+			</div>
+		);
+	}
 
 # React class
-snippet rcla "React Class component"
+snippet rcc "React Class component"
 	class ${1:MyComponent} extends Component {
 		constructor(props) {
 			super(props)
@@ -28,9 +55,8 @@ snippet rcla "React Class component"
 			);
 		}
 	}
-
 # React constructor
-snippet rcon "React ctor"
+snippet rctor "React ctor"
 	constructor(props) {
 		super(props)
 
