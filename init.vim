@@ -233,12 +233,20 @@ nmap <leader>rn <Plug>(coc-rename)
 "Close preview window when completion is done.
 autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
 
+" neomake
+nmap <Leader>no :lopen<CR>      " open location window
+nmap <Leader>nc :lclose<CR>     " close location window
+nmap <Leader>n, :ll<CR>         " go to current error/warning
+nmap <Leader>nn :lnext<CR>      " next error/warning
+nmap <Leader>np :lprev<CR>      " previous error/warning
 
 
 " **** Formatting
 
 " Treat ejs file as html
 au BufNewFile,BufRead *.ejs set filetype=html
+" treat *.js, *.mjs, *.cjs as javascript
+au BufNewFile,BufRead *.js,*.cjs,*.mjs set filetype=javascript
 
 " Indentation
 set expandtab       " use spaces instead of tabs
@@ -442,6 +450,10 @@ let g:user_emmet_settings = { 'javascript' : { 'extends' : 'jsx' } }
 " Syntax checking
 " Use newmake instead of syntastic for syntax checking
 Plug 'neomake/neomake'
+" Help using local project config files rather than global
+Plug 'benjie/neomake-local-eslint.vim'
+
+" Syntax check when writing to a buffer 
 
 Plug 'pangloss/vim-javascript'
 
@@ -580,6 +592,24 @@ call plug#end()            " required for vim-plug
 filetype plugin indent on
 
 " ---------------------- End Plugin Management ----------------------
+
+" ---------------------- Config Neomake -----------------------------
+" This needs to come after plugin management i.e. after call plug#end()
+call neomake#configure#automake('w')
+" When writing a buffer (no delay), and on normal mode changes (after 750ms).
+"call neomake#configure#automake('nw', 750)
+" When reading a buffer (after 1s), and when writing (no delay).
+"call neomake#configure#automake('rw', 1000)
+" Full config: when writing or reading a buffer, and on changes in insert and
+" normal mode (after 1s; no delay when writing).
+"call neomake#configure#automake('nrwi', 500)
+"
+" I am not sure how the enable_makers = ['eslint'] affects project vs global. 
+" It seems to then not work well with project configs, paticularly in parent folders.
+let g:neomake_javascript_enabled_makers = ['eslint']
+let g:neomake_open_list=0 " don't open location-list on errors
+" let g:neomake_open_list=2 " open location-list on errors
+" let g:neomake_logfile ='/home/vmuser1/Desktop/neomake.log'
 "
 " ---------------------- Color Schemes ----------------------
 "  Do after plugin stuff, otherwise there seems to be problems. Not sure why.
@@ -598,16 +628,6 @@ if (has("termguicolors"))
   set termguicolors                                                                     
 endif
 " 
-" Syntax check when writing to a buffer 
-" This needs to come after plugin management i.e. after call plug#end()
-call neomake#configure#automake('w')
-" When writing a buffer (no delay), and on normal mode changes (after 750ms).
-"call neomake#configure#automake('nw', 750)
-" When reading a buffer (after 1s), and when writing (no delay).
-"call neomake#configure#automake('rw', 1000)
-" Full config: when writing or reading a buffer, and on changes in insert and
-" normal mode (after 1s; no delay when writing).
-"call neomake#configure#automake('nrwi', 500)
 " Format options
 " Set formating options after filetype plugin runs to prevent
 " them from being overwritten by ftplugin
@@ -709,9 +729,4 @@ func! Prose()
 
 endfu
 command! PROSE call Prose()
-
-
-
-
-
 

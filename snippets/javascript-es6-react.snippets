@@ -19,19 +19,17 @@ snippet rip "import React prop-types"
 # React function
 snippet rfn "React function"
 	${1:FunctionName}(${2:args}) {
-		return (
-		};
-	}
+		return { ${0} };
+	};
 
 # React arrow function
 snippet raf "React arrow function"
-	const ${1:ComponentName} = (${2:props}) => {
-		return {
-		};
-	}
+	${1:ComponentName} = (${2:props}) => {
+		return { ${0} };
+	};
 # React functional component
 snippet rfc "React functional component"
-	const ${1:ComponentName} = (${2:props}) => {
+	${1:ComponentName} = (${2:props}) => {
 		return (
 			<div className='$1'>
 				$1

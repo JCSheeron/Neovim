@@ -1,10 +1,51 @@
 {
-    // set up eslint
-    "eslint.run": "onSave",
-    // "eslint.options": {"configFile": "/home/vmuser1/.config/nvim/.eslintrc.js"},
+  // coc preferences
+  "coc.preferences.formatOnSaveFiletypes": [
+    "javascript",
+    "javascriptreact",
+    "json",
+    "css",
+    "scss",
+    "html",
+    "python"
+  ],
+  // coc-snippets make vim select first item on completion
 
-    "coc.preferences.formatOnSaveFiletypes": ["javascript", "javascriptreact", "css", "scss", "html", "python"],
-    // coc-snippets make vim select first item on completion
-    "suggest.noselect": false,
-    "snippets.userSnippetsDirectory": "/home/vmuser1/.config/nvim/snippets"
+  "suggest.noselect": false,
+  "snippets.userSnippetsDirectory": "/home/vmuser1/.config/nvim/snippets",
+
+  // set up eslint
+  "eslint.enable": true,
+  "eslint.autoFix": false,
+  "eslint.autoFixOnSave": false,
+  "eslint.run": "onSave",
+  "eslint.packageManager": "npm",
+  // "eslint.options": {"configFile": "/home/vmuser1/.config/nvim/.eslintrc.js"},
+
+  // coc-prettier
+  "prettier.singleQuote": true,
+  "prettier.trailingComma": "es5",
+  "prettier.bracketSpacing": true,
+  "prettier.jsxBracketSameLine": false,
+  "prettier.semi": true,
+  "prettier.useTabs": false,
+  "prettier.proseWrap": "preserve",
+  "prettier.arrowParens": "always",
+  "prettier.eslintIntegration": true,
+  "prettier.tslintIntegration": true,
+  "prettier.statusItemText": "<ᴀ-=> ᴘʀᴇᴛᴛɪᴇʀ",
+
+  // coc-tsserver
+  // coc-tssserver - typescript typings support, js and ts lang server
+  // Validation is disabled in favor of coc-eslint
+  // https://github.com/neoclide/coc-tsserver#configuration-options
+
+  "typescript.validate.enable": false,
+  "typescript.preferences.quoteStyle": "single",
+  "typescript.updateImportsOnFileMove.enable": false,
+
+  "javascript.validate.enable": false,
+  "javascript.format.insertSpaceAfterFunctionKeywordForAnonymousFunctions": true,
+  "javascript.preferences.quoteStyle": "single",
+  "javascript.updateImportsOnFileMove.enable": false
 }
