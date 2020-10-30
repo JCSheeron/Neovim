@@ -1,4 +1,14 @@
 {
+  // coc-html
+  "html.filetypes": [
+      "html",
+      "handlebars",
+      "html.handlebars",
+      "htmldjango",
+      "blade"
+  ],
+  "html.format.indentHandlebars": true,
+
   // coc preferences
   "coc.preferences.formatOnSaveFiletypes": [
     "javascript",
@@ -7,12 +17,19 @@
     "css",
     "scss",
     "html",
+    "handlebars",
+    "html.handlebars",
     "python"
   ],
   // coc-snippets make vim select first item on completion
 
+  // snippets preferences
   "suggest.noselect": false,
   "snippets.userSnippetsDirectory": "/home/vmuser1/.config/nvim/snippets",
+
+  "snippets.extends": { // extend file type snippets with other file types
+    "javascript": ["html"] // allow html snippets in javascript
+  },
 
   // set up eslint
   "eslint.enable": true,

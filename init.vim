@@ -245,6 +245,7 @@ nmap <Leader>np :lprev<CR>      " previous error/warning
 
 " Treat ejs file as html
 au BufNewFile,BufRead *.ejs set filetype=html
+au BufNewFile,BufRead *.hbs set filetype=handlebars
 " treat *.js, *.mjs, *.cjs as javascript
 au BufNewFile,BufRead *.js,*.cjs,*.mjs set filetype=javascript
 
