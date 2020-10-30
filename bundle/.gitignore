@@ -5,4 +5,4 @@
 #!placeholder.txt
 
 # keep the contents for portablility, but ignore the internal .git files
-**/.git/
+/**/.git/
