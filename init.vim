@@ -380,6 +380,15 @@ Plug 'mattn/emmet-vim'
 " Emmet default trigger is <c-y>. This is clunky. Redefine.
 let g:user_emmet_leader_key=',' " <,-emmetComand>
 let g:user_emmet_settings = { 'javascript' : { 'extends' : 'jsx' } }
+" Tell coc to use html.handlebars as a handlebars file.
+" This is for compatibility between mustache/vim-mustahce-handlebars plugin
+" and coc-html.  For whatever reason, I cannot get coc-html to work with a
+" html.handlebars filetype, despite setting the html.filetyes setting of 
+" coc-html in the coc-settings.json file
+let g:coc_filetype_map = {
+      \ 'html.handlebars': 'handlebars',
+      \ 'html.mustache': 'handlebars'
+      \ }
 
 "Use Denite for fuzzy file finding, file management, and project searching.
 " Note:  denite requires Python 3.6
