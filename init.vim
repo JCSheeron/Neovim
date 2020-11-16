@@ -386,8 +386,8 @@ let g:user_emmet_settings = { 'javascript' : { 'extends' : 'jsx' } }
 " html.handlebars filetype, despite setting the html.filetyes setting of 
 " coc-html in the coc-settings.json file
 let g:coc_filetype_map = {
-      \ 'html.handlebars': 'handlebars',
-      \ 'html.mustache': 'handlebars'
+      \ 'html.handlebars': 'html',
+      \ 'html.mustache': 'html'
       \ }
 
 "Use Denite for fuzzy file finding, file management, and project searching.

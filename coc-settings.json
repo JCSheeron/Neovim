@@ -3,7 +3,6 @@
   "html.filetypes": [
       "html",
       "handlebars",
-      "html.handlebars",
       "htmldjango",
       "blade"
   ],
@@ -18,7 +17,6 @@
     "scss",
     "html",
     "handlebars",
-    "html.handlebars",
     "python"
   ],
   // coc-snippets make vim select first item on completion
