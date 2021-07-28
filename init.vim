@@ -329,6 +329,10 @@ set wildmode=list:longest
 filetype off
 filetype plugin indent off
 
+" tell NeoVim where to find NodeJs. Helpful when nvm is used and different versions
+" are installed. Sometimes this causes issues with right click launch
+" let g:node_host_prog = '/home/jcsheeron/.nvm/versions/node/v13.3.0/lib/node_modules/neovim/bin/'
+"
 " initiate vim-plug
 call plug#begin('~/.config/nvim/bundle/')
 
@@ -620,7 +624,7 @@ let g:neomake_javascript_enabled_makers = ['eslint']
 let g:neomake_open_list=0 " don't open location-list on errors
 " let g:neomake_open_list=2 " open location-list on errors
 " let g:neomake_logfile ='/home/vmuser1/Desktop/neomake.log'
-"
+
 " ---------------------- Color Schemes ----------------------
 "  Do after plugin stuff, otherwise there seems to be problems. Not sure why.
 " Palenight
@@ -738,5 +742,20 @@ func! Prose()
     "Limelight
 
 endfu
+command! WP call Prose() " Word Processing
 command! PROSE call Prose()
+
+" Create PDF using vim-pandoc
+func! PandocPdf()
+  Pandoc pdf --pdf-engine=pdflatex  
+endfu
+
+func! PandocPdfNumbered()
+  Pandoc pdf --pdf-engine=pdflatex --number-sections --filter pandoc-secnos 
+endfu
+
+command! PDF call PandocPdf()
+command! PDFNUM call PandocPdfNumbered()
+
+
 
