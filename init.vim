@@ -59,8 +59,10 @@ set mouse=a
 " NOTE: vim-pencil plugin will alter this behavior when active
 set colorcolumn=80
 set textwidth=120
-" set wrap on by default
+" Wrap and linebreak change how long lines are displayed, but don't alter the file content.
 set wrap
+set linebreak
+
 
 " set file type specifics in the ~/.vim/ftplugin/<filetype.vim> file
 
@@ -287,8 +289,6 @@ set fileformat=unix
 " buffers
 set fileformats=unix,dos
 
-" **** Color scheme (terminal)
-"set t_Co=256
 
 " set spelling errors to use underlines rather than red squiggly in terminals.
 " The red squiggly does not show up in terminals.
@@ -375,7 +375,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Used honza/vim-snippets as the snippet source. Made a copy in a folder I could control and then
 " removed it so I had control of the snippets
 "Plug 'honza/vim-snippets'
-let g:coc_global_extensions = ['coc-css', 'coc-html', 'coc-json', 'coc-prettier', 'coc-tsserver', 'coc-python', 'coc-snippets']
+let g:coc_global_extensions = ['coc-css', 'coc-html', 'coc-json', 'coc-prettier', 'coc-tsserver', 'coc-pyright', 'coc-snippets']
 
 
 " Use Emmet for Web Dev HTML, CSS, etc.
@@ -541,6 +541,7 @@ Plug 'itchyny/lightline.vim'
     \}
 let g:lightline.colorscheme = 'palenight'
 
+
 " use this funcion to display the spelling info in the status line.
 " Spelling language and spelling file it is specified
 function! SpellInfo()
@@ -552,14 +553,13 @@ endfunction
 Plug 'junegunn/goyo.vim'
 " disable fancy lightline staus line, but turn on minimum stuff
 function! s:goyo_enter()
-  " goyo disables lightline, so no need to call
-  "call lightline#disable()
-  set showmode
+  " goyo disables lightline by default
+  " don't need to show mode with lightline, but lightline is normally shut off with goyo
+  set showmodeu
 endfunction
 
 function! s:goyo_leave()
   " goyo re-enables lightline, so no need to call
-  "call lightline#enable()
   set noshowmode
   " reset spelling colors
   hi SpellBad cterm=underline term=underline ctermfg=red
@@ -572,7 +572,7 @@ autocmd! User GoyoEnter nested call <SID>goyo_enter()
 autocmd! User GoyoLeave nested call <SID>goyo_leave()
 
 Plug 'junegunn/limelight.vim'
-" Limelight need to be able to calculate teh dimming down of surrounding
+" Limelight need to be able to calculate the dimming down of surrounding
 " paragraphs. It can't do this by default with the solarized color scheme.
 " Help it by giving it these definitions/parameters
   " Color name (:help cterm-colors) or ANSI code
@@ -627,6 +627,14 @@ let g:neomake_open_list=0 " don't open location-list on errors
 
 " ---------------------- Color Schemes ----------------------
 "  Do after plugin stuff, otherwise there seems to be problems. Not sure why.
+
+" **** Color scheme (terminal)
+"set t_Co=256
+
+if (has("termguicolors"))                                                               
+  set termguicolors                                                                     
+endif
+
 " Palenight
 set background=dark
 colorscheme palenight
@@ -638,9 +646,6 @@ colorscheme palenight
 " in ~/.config/nvim/colors/ and uncomment:
 "colorscheme solarized
  
-if (has("termguicolors"))                                                               
-  set termguicolors                                                                     
-endif
 " 
 " Format options
 " Set formating options after filetype plugin runs to prevent
@@ -736,13 +741,13 @@ func! Prose()
     setlocal linebreak
 
     " Turn on Goyo and set the width
-    Goyo 90
+    Goyo 120
 
     " Turn on Limelight
     "Limelight
 
 endfu
-command! WP call Prose() " Word Processing
+" command! WP call Prose() " Word Processing
 command! PROSE call Prose()
 
 " Create PDF using vim-pandoc
@@ -757,5 +762,17 @@ endfu
 command! PDF call PandocPdf()
 command! PDFNUM call PandocPdfNumbered()
 
+" Make it easy to enable and disable LightLine
+function! LightLineOn()
+  call lightline#enable()
+endfunction
+
+function! LightLineOff()
+  call lightline#disable()
+endfunction
+
+command! LIGHTLINE call LightLineOn()
+command! LIGHTLINEOFF call LightLineOff()
+command! NOLIGHTLINE call LightLineOff()
 
 

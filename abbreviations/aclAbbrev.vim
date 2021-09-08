@@ -705,7 +705,6 @@ iabbrev thnig thing
 iabbrev thnigs things
 iabbrev threatend threatened
 iabbrev thru through
-iabbrev thru through
 iabbrev thsi this
 iabbrev thsoe those
 iabbrev thta that
