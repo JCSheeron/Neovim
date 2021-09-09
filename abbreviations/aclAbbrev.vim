@@ -220,7 +220,7 @@ iabbrev decisons decisions
 iabbrev decor décor
 iabbrev defendent defendant
 iabbrev definately definitely
-iabbrev deja déj
+iabbrev deja déja
 iabbrev deptartment department
 iabbrev desicion decision
 iabbrev desicions decisions

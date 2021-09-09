@@ -39,7 +39,7 @@ set ruler
 set laststatus=2 
 
 " last line
-" showmode is not needed with lightline
+" showmode is not needed with lightline plugin (cfg below)
 "set showmode
 set noshowmode
 set showcmd
@@ -553,13 +553,14 @@ endfunction
 Plug 'junegunn/goyo.vim'
 " disable fancy lightline staus line, but turn on minimum stuff
 function! s:goyo_enter()
-  " goyo disables lightline by default
-  " don't need to show mode with lightline, but lightline is normally shut off with goyo
-  set showmodeu
+  " goyo disables lightline by default.
+  " Don't need to show mode with lightline, but lightline is normally shut off
+  " by goyo, so reenable showmode.
+  set showmode
 endfunction
 
 function! s:goyo_leave()
-  " goyo re-enables lightline, so no need to call
+  " goyo re-enables lightline, so no need for showmode
   set noshowmode
   " reset spelling colors
   hi SpellBad cterm=underline term=underline ctermfg=red
@@ -764,10 +765,12 @@ command! PDFNUM call PandocPdfNumbered()
 
 " Make it easy to enable and disable LightLine
 function! LightLineOn()
+  set noshowmode
   call lightline#enable()
 endfunction
 
 function! LightLineOff()
+  set showmode
   call lightline#disable()
 endfunction
 
