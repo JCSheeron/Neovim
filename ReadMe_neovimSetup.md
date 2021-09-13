@@ -50,6 +50,10 @@ Here is what I did to update Guake (build it from the lateset from github):
 - Default configuration goes in a text file: ~/.config/nvim/init.vim
 - One I made can be found in GitHub: https://github.com/JCSheeron/Neovim.git. Note
 this uses plugins and vim-plug which is not yet installed.
+* Get init_min.vim from git for a minimum config.
+* Get the snvim.sh script and the init_snvim.vim from git. Make a link to snvim.share
+in a user bin folder e.g.~/bin:
+	`ln -s /home/username/.config/nvim/snvim.sh /home/username/bin/svim `
 
 ## Install Plugins
 
