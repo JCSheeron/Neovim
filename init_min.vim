@@ -14,14 +14,19 @@ let mapleader = ","
 " set how many lines to read variables from
 set modelines=0
 
-" setup backup and swap related settings
+" setup backup undo and swap related settings
 set backup
 set swapfile
 set backupext=.bak
+" make sure the directories exist first.
+call mkdir($HOME."/.config/nvim", "p", 0770)
+call mkdir($HOME."/.config/nvim/.undo", "p", 0700)
 set undodir=~/.config/nvim/.undo//
-set backupdir=~/.config/nvim/.backup//
+call mkdir($HOME."/.config/nvim/.swap", "p", 0700)
 set directory=~/.config/nvim/.swap//
-" make the first backup special
+call mkdir($HOME."/.config/nvim/.backup", "p", 0700)
+set backupdir=~/.config/nvim/.backup//
+" make the first backup special (create the *.orig file)
 set patchmode=.orig
 
 " turn on syntax highlighting
