@@ -74,13 +74,16 @@ a buffer is opened.
 - To install nodejs
 (assuming ubuntu or Debian, but may vary with OS)
 Using Ubuntu
+
 `curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash -`
 `sudo apt-get install -y nodejs`
 
 Using Debian, as root
+
 `curl -fsSL https://deb.nodesource.com/setup_16.x | bash -`
 `apt-get install -y nodejs`
 
+Once node is installed and CoC is installed, CoC will run the installation of the extensions once Neovim is opened.
 # Check Health
 
 - Check NeoVim status/health with:
@@ -92,13 +95,22 @@ Using Debian, as root
 clipboard support or no clipboard provider, there are several provider
 options, but two are xclip or xsel. 
 Install xsel:
-'sudo apt-get install xsel'
+`sudo apt-get install xsel`
 Install xclip:
 `sudo apt-get install xclip`
 
 # Make Veovim the default editor
-sudo update-alternatives --config vi
-sudo update-alternatives --config vim
-sudo update-alternatives --config editor
+`sudo update-alternatives --config vi`
+`sudo update-alternatives --config vim`
+`sudo update-alternatives --config editor`
+
+OR
+
+`sudo update-alternatives --install /usr/bin/vi vi /usr/local/bin/nvim 60`
+`sudo update-alternatives --install /usr/bin/vim vim /usr/local/bin/nvim 60`
+`sudo update-alternatives --install /usr/bin/editor editor /usr/local/bin/nvim 60`
+
+`select-editor'
+
 
 
