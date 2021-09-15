@@ -640,6 +640,7 @@ let g:neomake_open_list=0 " don't open location-list on errors
 
 " ---------------------- LSP Setup ----------------------
 " For Bash Language Server using the nvim-lspconfig
+" This must go after call plug#end()
 lua require'lspconfig'.bashls.setup{}
 
 
