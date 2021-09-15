@@ -77,6 +77,9 @@ set backspace=indent,eol,start
 set autoread         
 
 " use the system clipboard
+" Raspberry Pi or other headless server via SSH, I used xsel
+" and SSH X11 forwarding on server /etc/ssh/sshd_config and on
+" client (/etc/ssh/ssh_config or in the config file as ForwardX11 yes
 set clipboard=unnamedplus
 
 " allow hidden buffers -- dont't unload buffers when they are abandoned
