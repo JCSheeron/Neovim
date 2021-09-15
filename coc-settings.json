@@ -1,11 +1,6 @@
 {
   // coc-html
-  "html.filetypes": [
-      "html",
-      "handlebars",
-      "htmldjango",
-      "blade"
-  ],
+  "html.filetypes": ["html", "handlebars", "htmldjango", "blade"],
   "html.format.indentHandlebars": true,
 
   // coc preferences
@@ -23,9 +18,10 @@
 
   // snippets preferences
   "suggest.noselect": false,
-  "snippets.userSnippetsDirectory": "/home/vmuser1/.config/nvim/snippets",
+  "snippets.userSnippetsDirectory": "/home/jcsheeron/.config/nvim/snippets",
 
-  "snippets.extends": { // extend file type snippets with other file types
+  "snippets.extends": {
+    // extend file type snippets with other file types
     "javascript": ["html"] // allow html snippets in javascript
   },
 
@@ -35,7 +31,7 @@
   "eslint.autoFixOnSave": false,
   "eslint.run": "onSave",
   "eslint.packageManager": "npm",
-  // "eslint.options": {"configFile": "/home/vmuser1/.config/nvim/.eslintrc.js"},
+  // "eslint.options": {"configFile": "/home/jcsheeron/.config/nvim/.eslintrc.js"},
 
   // coc-prettier
   "prettier.singleQuote": true,

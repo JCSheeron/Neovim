@@ -375,12 +375,19 @@ Plug 'kshenoy/vim-signature'
 " Use Denite instead
 "Plug 'Buffergator'
 
+" Language Server Protocol (LSP)
+" This plugin is a collection of common configurations for the build in
+" language server client.
+" coc-sh (shell) uses LSP for example
+Plug 'neovim/nvim-lspconfig'
+
+
 " coc for auto complete, linting, code fixing
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Used honza/vim-snippets as the snippet source. Made a copy in a folder I could control and then
 " removed it so I had control of the snippets
 "Plug 'honza/vim-snippets'
-let g:coc_global_extensions = ['coc-css', 'coc-html', 'coc-json', 'coc-prettier', 'coc-tsserver', 'coc-pyright', 'coc-snippets']
+let g:coc_global_extensions = ['coc-css', 'coc-html', 'coc-json', 'coc-prettier', 'coc-tsserver', 'coc-pyright', 'coc-snippets', 'coc-sh']
 
 
 " Use Emmet for Web Dev HTML, CSS, etc.
@@ -630,6 +637,11 @@ let g:neomake_javascript_enabled_makers = ['eslint']
 let g:neomake_open_list=0 " don't open location-list on errors
 " let g:neomake_open_list=2 " open location-list on errors
 " let g:neomake_logfile ='/home/vmuser1/Desktop/neomake.log'
+
+" ---------------------- LSP Setup ----------------------
+" For Bash Language Server using the nvim-lspconfig
+lua require'lspconfig'.bashls.setup{}
+
 
 " ---------------------- Color Schemes ----------------------
 "  Do after plugin stuff, otherwise there seems to be problems. Not sure why.
