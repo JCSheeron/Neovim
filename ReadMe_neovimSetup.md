@@ -11,9 +11,11 @@ Add the neovim repository:
 ## Install Python support
 - Install Python for Python based modules
  
-	sudo apt-get install python-dev python-pip python3-dev python3-pip
+`sudo apt-get install python-dev python-pip python3-dev python3-pip`
 
 - Install pynvim module (this python module used to be called neovim)
+`pip2 install pynvim`
+`pip3 install pynvim`
 
 - Needs wheel and setup tools
  
