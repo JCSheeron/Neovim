@@ -72,9 +72,14 @@ this reqirement isn't met.
 give an error on startup before opening a buffer, and on the status line once
 a buffer is opened.
 - To install nodejs
-(assuming ubuntu, but may vary with OS)
-`curl -sL https://deb.nodesource.com/setup_13.x | sudo -E bash -`
+(assuming ubuntu or Debian, but may vary with OS)
+Using Ubuntu
+`curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash -`
 `sudo apt-get install -y nodejs`
+
+Using Debian, as root
+`curl -fsSL https://deb.nodesource.com/setup_16.x | bash -`
+`apt-get install -y nodejs`
 
 # Check Health
 
