@@ -11,11 +11,11 @@ Add the neovim repository:
 ## Install Python support
 - Install Python for Python based modules
  
-`sudo apt-get install python-dev python-pip python3-dev python3-pip`
+	sudo apt-get install python-dev python-pip python3-dev python3-pip
 
 - Install pynvim module (this python module used to be called neovim)
-`pip2 install pynvim`
-`pip3 install pynvim`
+	pip2 install pynvim
+	pip3 install pynvim
 
 - Needs wheel and setup tools
  
@@ -33,15 +33,15 @@ If you get weird characters, this is usually a terminal that is not able to show
 Upgrade the terminal or change the cursor (not sure how on the later)
 Here is what I did to update Guake (build it from the lateset from github):
 - Make a directory to hold the source. Clone the source
-`git clone https://github.com/Guake/guake.git 3.6.3`
+	git clone https://github.com/Guake/guake.git 3.6.3
 - Run the script to install the dependencies
-`./scripts/bootstrap-dev-debian.sh run make`
+	./scripts/bootstrap-dev-debian.sh run make
 - Install guake
-`make`
-`sudo make install`
+	make
+	sudo make install
 - To uninstall
-`make`
-`sudo uninstall`
+	make
+	sudo uninstall
 
 ### Update/Install Guake
 
@@ -76,14 +76,12 @@ a buffer is opened.
 - To install nodejs
 (assuming ubuntu or Debian, but may vary with OS)
 Using Ubuntu
-
-`curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash -`
-`sudo apt-get install -y nodejs`
+	curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash -
+	sudo apt-get install -y nodejs
 
 Using Debian, as root
-
-`curl -fsSL https://deb.nodesource.com/setup_16.x | bash -`
-`apt-get install -y nodejs`
+	curl -fsSL https://deb.nodesource.com/setup_16.x | bash -
+	apt-get install -y nodejs
 
 Once node is installed and CoC is installed, CoC will run the installation of the extensions once Neovim is opened.
 # Check Health
@@ -97,22 +95,17 @@ Once node is installed and CoC is installed, CoC will run the installation of th
 clipboard support or no clipboard provider, there are several provider
 options, but two are xclip or xsel. 
 Install xsel:
-`sudo apt-get install xsel`
+	sudo apt-get install xsel
 Install xclip:
-`sudo apt-get install xclip`
+sudo apt-get install xclip
 
 # Make Veovim the default editor
-`sudo update-alternatives --config vi`
-`sudo update-alternatives --config vim`
-`sudo update-alternatives --config editor`
-
+	select-editor
+	
+	sudo update-alternatives --config vi
+	sudo update-alternatives --config vim
+	sudo update-alternatives --config editor
 OR
-
-`sudo update-alternatives --install /usr/bin/vi vi /usr/local/bin/nvim 60`
-`sudo update-alternatives --install /usr/bin/vim vim /usr/local/bin/nvim 60`
-`sudo update-alternatives --install /usr/bin/editor editor /usr/local/bin/nvim 60`
-
-`select-editor'
-
-
-
+	sudo update-alternatives --install /usr/bin/vi vi /usr/local/bin/nvim 60
+	sudo update-alternatives --install /usr/bin/vim vim /usr/local/bin/nvim 60
+	sudo update-alternatives --install /usr/bin/editor editor /usr/local/bin/nvim 60
