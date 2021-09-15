@@ -85,7 +85,10 @@ a buffer is opened.
 
 - Run :checkhealth within NeoVim. If there is a error/warning about no
 clipboard support or no clipboard provider, there are several provider
-options, but one is xclip. Install xclip:
+options, but two are xclip or xsel. 
+Install xsel:
+'sudo apt-get install xsel'
+Install xclip:
 `sudo apt-get install xclip`
 
 # Make Veovim the default editor
