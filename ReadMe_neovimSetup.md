@@ -69,20 +69,25 @@ in a user bin folder e.g.~/bin:
 - Note: denite plugin requires python 3.6+, so :checkhealh will show errors if 
 this reqirement isn't met.
 
-### CoC Plugin
+### Node JS and CoC Plugin
 - Coc requires nodejs.  If nodejs is not installed, neovim should work, but CoC will
 give an error on startup before opening a buffer, and on the status line once
 a buffer is opened.
 - To install nodejs
 (assuming ubuntu or Debian, but may vary with OS)
 Using Ubuntu
-	curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash -
-	sudo apt-get install -y nodejs
+    curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash -
+    sudo apt-get install -y nodejs
 
 Using Debian, as root
-	curl -fsSL https://deb.nodesource.com/setup_16.x | bash -
-	apt-get install -y nodejs
+    curl -fsSL https://deb.nodesource.com/setup_16.x | bash -
+    apt-get install -y nodejs
 
+Also, use npm to install the Node.js provider (optional)
+    sudo npm install -g neovim
+Also, the bash language server (for coc-sh and other plugins and coc extensions)
+    sudo npm i -g bash-language-server
+    
 Once node is installed and CoC is installed, CoC will run the installation of the extensions once Neovim is opened.
 # Check Health
 
