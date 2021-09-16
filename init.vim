@@ -769,14 +769,31 @@ endfu
 command! PROSE call Prose()
 
 " Create PDF using vim-pandoc
+  " -f markdown-raw_tex is for latex processing. Otherwise sometimes something
+  "  like backslash (\) in text can cause errors.
 func! PandocPdf()
-  Pandoc pdf --pdf-engine=pdflatex  
+  Pandoc pdf --pdf-engine=pdflatex
+  "Pandoc pdf --pdf-engine=pdflatex -f markdown-raw_tex
 endfu
 
 func! PandocPdfNumbered()
   Pandoc pdf --pdf-engine=pdflatex --number-sections --filter pandoc-secnos 
+  "Pandoc pdf --pdf-engine=pdflatex -f markdown-raw_tex --number-sections --filter pandoc-secnos 
+endfu
+" Create PDF using vim-pandoc
+func! PandocPdf()
+  " Pandoc pdf --pdf-engine=pdflatex
+  " Pandoc pdf --pdf-engine=pdflatex -f markdown-raw_tex
+  " can use -V geometry:margin=1in for example if all margins are to be the same
+  Pandoc pdf --pdf-engine=pdflatex -V geometry:"top=1.25in, bottom=1.0in, left=1.25in, right=1.00in" 
 endfu
 
+func! PandocPdfNumbered()
+  "Pandoc pdf --pdf-engine=pdflatex --number-sections --filter pandoc-secnos --filter pandoc-numbering
+  "Pandoc pdf --pdf-engine=pdflatex -f markdown-raw_tex --number-sections --filter pandoc-secnos --filter pandoc-numbering
+  " can use -V geometry:margin=1in for example if all margins are to be the same
+  Pandoc pdf --pdf-engine=pdflatex -V geometry:"top=1.25in, bottom=1.0in, left=1.25in, right=1.00in" --number-sections --filter pandoc-secnos --filter pandoc-numbering
+endfu
 command! PDF call PandocPdf()
 command! PDFNUM call PandocPdfNumbered()
 

@@ -1,4 +1,5 @@
 Originally from honza/vim-snippets
 Put into my own folder so I could control and consolidate.
-Changed file ending from *.snippet to *._snippet to keep a file from being read.
+
+To keep a file from being read, change file ending from *.snippet to *._snippet.
 
