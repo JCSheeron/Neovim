@@ -110,7 +110,16 @@ sudo apt-get install xclip
 	sudo update-alternatives --config vi
 	sudo update-alternatives --config vim
 	sudo update-alternatives --config editor
-OR
+	
+OR   
+
 	sudo update-alternatives --install /usr/bin/vi vi /usr/local/bin/nvim 60
 	sudo update-alternatives --install /usr/bin/vim vim /usr/local/bin/nvim 60
 	sudo update-alternatives --install /usr/bin/editor editor /usr/local/bin/nvim 60
+	
+# Pandoc Support and PDF Creation
+vim-pandoc is a plugin, but for the pdf engine can be tricky to get working.  I am using pdflated, but one way I 
+have gotten it to work (there may be others) is to install ('sudo apt install texlive-latex-extra'). See README.Debian
+in /usr/share/doc/pandoc. It states `texlive-latex-recommended` should work, but I have had better luck with `...-extra`.
+
+
