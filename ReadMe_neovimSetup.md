@@ -136,7 +136,19 @@ OR
 	
 # Pandoc Support and PDF Creation
 vim-pandoc is a plugin, but for the pdf engine can be tricky to get working.  I am using pdflated, but one way I 
-have gotten it to work (there may be others) is to install ('sudo apt install texlive-latex-extra'). See README.Debian
+have gotten it to work (there may be others) is to install (`sudo apt install texlive-latex-extra`). See README.Debian
 in /usr/share/doc/pandoc. It states `texlive-latex-recommended` should work, but I have had better luck with `...-extra`.
+
+## Pandoc Numbering
+
+For PDF numbering, needed to install pandoc-secnos at a minimum.  It is part of the pandoc-xnos filter suite.  I installed pandoc-xnos instead:
+
+	pip install pandoc-fignos pandoc-eqnos pandoc-tablenos pandoc-secnos --user
+
+and then in usage in the pandoc command use:
+	
+	--filter pandoc-xnos
+
+Note that in the pandoc-xnos documentation, it says that any use of `pandoc-citeproc` or `--bibliography=FILE` should come after the `pandoc-xnos` filter call.
 
 
