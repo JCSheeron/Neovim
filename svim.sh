@@ -14,11 +14,11 @@
 # If the specified file does not exist:
 #   No copy is made, and the file is opened with sudo vim <filename>
 #
-# vim is started with a special config file in ~/.vim/vimrc_svim if it exists. 
+# vim is started with a special config file in init_snvim.vim if it exists. 
 # This config has the .orig patchmode feature turned off so this script can
 # control the .orig file making.
 # 
-# If ~/.vim/vimrc_svim does not exist, then /etc/vim/vimrc will be used. If that
+# If init_snvim.vim does not exist, then init_min.vim will be used. If that
 # does not exist, vim will be started with vim -u NONE
 
 function usage {
@@ -28,7 +28,7 @@ function usage {
 FILE=$1
 ORIGFILE=$FILE".orig"
 CFGFILE=$HOME"/.config/nvim/init_snvim.vim"
-ALTCFG=$HOME"/.config/nvim/init.vim"
+ALTCFG=$HOME"/.config/nvim/init_min.vim"
 
 if [ -f "$FILE" ] && [ ! -f "$ORIGFILE" ]; then
     # the file exists, but the orig copy does not.
