@@ -73,6 +73,9 @@ in a user bin folder e.g.~/bin:
 	curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 - Run nvim. You'll get plug in related errors if init.vim references plugins.
+- call plug#begin('~/.config/nvim/bundle/') in init.vim to begin plugin config/install area
+- call plug#end() in init.vim after plugin config/install
+
 - From within vim, run vim-plug to install the plugins: `:PlugInstall`
 - Note: denite plugin requires python 3.6+, so :checkhealh will show errors if 
 this reqirement isn't met.
