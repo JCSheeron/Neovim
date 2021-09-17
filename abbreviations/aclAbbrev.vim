@@ -621,6 +621,7 @@ iabbrev separeate separate
 iabbrev seperate separate
 iabbrev sercumstances circumstances
 iabbrev setpoint set point
+iabbrev setpoints set points
 iabbrev shcool school
 iabbrev shesaid she said
 iabbrev shineing shining
