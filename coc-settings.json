@@ -22,7 +22,20 @@
 
   "snippets.extends": {
     // extend file type snippets with other file types
-    "javascript": ["html"] // allow html snippets in javascript
+    "cpp": ["c"],
+    "cuda": ["cpp"],
+    "eelixir": ["html"],
+    "freemarker": ["html"],
+    "htmldjango": ["html"],
+    "javascript": ["html"],
+    "jinja": ["html"],
+    "octave": ["matlab"],
+    "pandoc": ["markdown"],
+    "scss": ["css"],
+    "systemverilog": ["verilog"],
+    "typescript": ["javascript"],
+    "typescriptreact": ["typescript"],
+    "vue": ["html", "javascript", "css"]
   },
 
   // set up eslint
