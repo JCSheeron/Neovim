@@ -68,7 +68,6 @@ set textwidth=120
 set wrap
 set linebreak
 
-
 " set file type specifics in the ~/.vim/ftplugin/<filetype.vim> file
 
 " by default, in insert mode backspace won't delete over line breaks, or 
@@ -108,8 +107,6 @@ set splitright
 " and writes the buffer to the current file name
 cmap Sw w !sudo tee > /dev/null %
 
-" **** Key mapping
-"
 " FOR TRAINING, Remap arrow keys in normal mode to not do anyting... at least for now
 noremap <Up> <nop>
 noremap <Down> <nop>
@@ -296,28 +293,6 @@ set fileformat=unix
 " when reading files try unix line endings then dos, also use unix for new
 " buffers
 set fileformats=unix,dos
-
-
-" set spelling errors to use underlines rather than red squiggly in terminals.
-" The red squiggly does not show up in terminals.
-" from solarized.vim color scheme file (for reference, not to be uncommented)
-"exe "hi! SpellBad"       .s:fmt_curl   .s:fg_none   .s:bg_none    .s:sp_red
-"exe "hi! SpellCap"       .s:fmt_curl   .s:fg_none   .s:bg_none    .s:sp_violet
-"exe "hi! SpellRare"      .s:fmt_curl   .s:fg_none   .s:bg_none    .s:sp_cyan
-"exe "hi! SpellLocal"     .s:fmt_curl   .s:fg_none   .s:bg_none    .s:sp_yellow
-hi SpellBad cterm=underline term=underline ctermfg=red
-hi SpellCap cterm=underline term=underline ctermfg=magenta
-hi SpellRare cterm=underline term=underline ctermfg=cyan
-hi SpellLocal cterm=underline term=underline ctermfg=yellow
-" set spelling language, but turn spelling check off by default.
-" Allow ftplugin/.vim files turn it on if wanted.
-set spelllang=en_us
-set nospell
-
-" set the color theme to wombat256
-"colorscheme wombat256
-" and set the mark color to DarkSlateGray
-"highlight ColorColumn ctermbg=lightgray guibg=lightgray
 
 " **** Other settings
 
@@ -578,10 +553,17 @@ function! s:goyo_leave()
   " goyo re-enables lightline, so no need for showmode
   set noshowmode
   " reset spelling colors
-  hi SpellBad cterm=underline term=underline ctermfg=red
-  hi SpellCap cterm=underline term=underline ctermfg=magenta
-  hi SpellRare cterm=underline term=underline ctermfg=cyan
-  hi SpellLocal cterm=underline term=underline ctermfg=yellow
+  if &termguicolors
+    hi SpellBad gui=undercurl cterm=underline term=underline ctermfg=red
+    hi SpellCap gui=undercurl cterm=underline term=underline ctermfg=magenta
+    hi SpellRare gui=undercurl cterm=underline term=underline ctermfg=cyan
+    hi SpellLocal gui=undercurl cterm=underline term=underline ctermfg=yellow
+  else
+    hi SpellBad gui=undercurl cterm=underline term=underline ctermbg=DarkMagenta ctermfg=Yellow
+    hi SpellCap gui=undercurl cterm=underline term=underline ctermfg=magenta
+    hi SpellRare gui=undercurl cterm=underline term=underline ctermfg=cyan
+    hi SpellLocal gui=undercurl cterm=underline term=underline ctermbg=Magenta ctermfg=LightYellow
+  endif
 endfunction
 
 autocmd! User GoyoEnter nested call <SID>goyo_enter()
@@ -651,10 +633,10 @@ lua require'lspconfig'.bashls.setup{}
 "  Do after plugin stuff, otherwise there seems to be problems. Not sure why.
 
 " **** Color scheme (terminal)
-"set t_Co=256
+set t_Co=256
 
 if (has("termguicolors"))                                                               
-  set termguicolors                                                                     
+  set termguicolors                                                                    
 endif
 
 " Palenight
@@ -667,7 +649,38 @@ colorscheme palenight
 " put https://raw.github.com/altercation/vim-colors-solarized/master/colors/solarized.vim
 " in ~/.config/nvim/colors/ and uncomment:
 "colorscheme solarized
- 
+
+" set the color theme to wombat256
+"colorscheme wombat256
+" and set the mark color to DarkSlateGray
+"highlight ColorColumn ctermbg=lightgray guibg=lightgray
+
+" Some terminals can't show squiggly lines, so spelling errors won't show.
+" Set spelling errors to use underlines rather than red squiggly in terminals.
+" Also some color schemes have difficult/impossible to read highlights depending
+" on if termguicolors is on or off.  Provide a easy place to customize.
+" from solarized.vim color scheme file (for reference, not to be uncommented)
+"exe "hi! SpellBad"       .s:fmt_curl   .s:fg_none   .s:bg_none    .s:sp_red
+"exe "hi! SpellCap"       .s:fmt_curl   .s:fg_none   .s:bg_none    .s:sp_violet
+"exe "hi! SpellRare"      .s:fmt_curl   .s:fg_none   .s:bg_none    .s:sp_cyan
+"exe "hi! SpellLocal"     .s:fmt_curl   .s:fg_none   .s:bg_none    .s:sp_yellow
+
+if &termguicolors
+  hi SpellBad gui=undercurl cterm=underline term=underline ctermfg=red
+  hi SpellCap gui=undercurl cterm=underline term=underline ctermfg=magenta
+  hi SpellRare gui=undercurl cterm=underline term=underline ctermfg=cyan
+  hi SpellLocal gui=undercurl cterm=underline term=underline ctermfg=yellow
+else
+  hi SpellBad gui=undercurl cterm=underline term=underline ctermbg=DarkMagenta ctermfg=Yellow
+  hi SpellCap gui=undercurl cterm=underline term=underline ctermfg=magenta
+  hi SpellRare gui=undercurl cterm=underline term=underline ctermfg=cyan
+  hi SpellLocal gui=undercurl cterm=underline term=underline ctermbg=Magenta ctermfg=LightYellow
+endif
+
+" set spelling language, but turn spelling check off by default.
+" Allow ftplugin/.vim files turn it on if wanted.
+set spelllang=en_us
+set nospell
 " 
 " Format options
 " Set formating options after filetype plugin runs to prevent
@@ -702,6 +715,16 @@ setlocal formatoptions-=o
 "autocmd BufWritePost *.js silent :JSHint
 
 " ---------------------- USER FUNCTIONS ----------------------
+
+" Show syntax highlighting groups for word under cursor
+function! SynStack()
+    if !exists("*synstack")
+        return
+    endif
+    echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+endfunc
+command! CHECKSYNTAX call SynStack()
+
 "
 " Turn On Auto Correct/Abbrevitions -- Auto Correct List(ACL)
 func! ACLOn()

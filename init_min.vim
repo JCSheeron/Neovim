@@ -1,5 +1,4 @@
-" ---------------------- USABILITY CONFIGURATION ----------------------
-"  Minimal config file
+" ---------------------- USABILITY CONFIGURATION ---------------------- "  Minimal config file
 
 " don't make vim compatible with vi, otherwise it conflicts with Vundle and
 " other plugins
@@ -38,13 +37,9 @@ set number
 " show file stats
 set ruler
 
-" status bar
+" status bar, mode, command
 set laststatus=2 
-
-" last line
-" showmode i snot needed with lightline
-"set showmode
-set noshowmode
+set showmode
 set showcmd
 
 " help quick screen redraw
@@ -63,6 +58,7 @@ set colorcolumn=80
 set textwidth=120
 " set wrap on by default
 set wrap
+set linebreak
 
 " by default, in insert mode backspace won't delete over line breaks, or 
 " automatically-inserted indentation, let's change that
@@ -87,9 +83,6 @@ set hidden
 " keep the cursor visible within 3 lines when scrolling
 set scrolloff=3
 
-" turn on spell check
-set spell spelllang=en_us
-
 " underline the line the cursor is on
 " Cursor highlight taken care of by color scheme
 set cursorline
@@ -104,8 +97,6 @@ set splitright
 " and writes the buffer to the current file name
 cmap Sw w !sudo tee > /dev/null %
 
-" **** Key mapping
-"
 " FOR TRAINING, Remap arrow keys in normal mode to not do anyting... at least for now
 noremap <Up> <nop>
 noremap <Down> <nop>
@@ -134,16 +125,30 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
+" map the underscore = to a + so when using +/- to navigate up and down a line,
+" the shift is not needed for the +
+nnoremap = +
+
 " opening additional buffers (files)
 map <leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
 map <leader>t :tabe <C-R>=expand("%:p:h") . "/" <CR>
+map <leader>sp :sp <C-R>=expand("%:p:h") . "/" <CR>
+" assume vertical split unless sp is used.
 map <leader>s :vsp <C-R>=expand("%:p:h") . "/" <CR>
+map <leader>vsp :vsp <C-R>=expand("%:p:h") . "/" <CR>
 
 " List contents of all registers (that typically contain pasteable text).
 " i.e. shortcut for :reg/:registers
 nnoremap <silent> "" :registers ".0123456789abcdefghijklmnopqrstuvwxyz-*+%/#<CR>
 
 " **** Formatting
+
+" Treat ejs file as html
+au BufNewFile,BufRead *.ejs set filetype=html
+au BufNewFile,BufRead *.hbs set filetype=handlebars
+" treat *.js, *.mjs, *.cjs as javascript
+au BufNewFile,BufRead *.js,*.cjs,*.mjs set filetype=javascript
+
 " Indentation
 set expandtab       " use spaces instead of tabs
 set autoindent      " autoindent based on line above, works most of the time
@@ -180,20 +185,6 @@ set fileformat=unix
 " buffers
 set fileformats=unix,dos
 
-" **** Color scheme (terminal)
-set t_Co=256
-set background=dark
-let g:solarized_termcolors=256
-let g:solarized_termtrans=1
-" put https://raw.github.com/altercation/vim-colors-solarized/master/colors/solarized.vim
-" in ~/.config/nvim/colors/ and uncomment:
-colorscheme solarized
-
-" set the color theme to wombat256
-"colorscheme wombat256
-" and set the mark color to DarkSlateGray
-"highlight ColorColumn ctermbg=lightgray guibg=lightgray
-
 " **** Other settings
 
 " enable matchit plugin which ships with vim and greatly enhances '%'
@@ -205,16 +196,80 @@ set viminfo='100,f1
 " suggestion for normal mode commands
 set wildmode=list:longest
 
-" -----------------------
-"  Plugin configuration here
-"  ----------------------
+" ---------------------- PLUGIN CONFIGURATION ----------------------
+" Use vim-plug to manage plugins
+" Vundle and perhaps other plugins have trouble when filetype is on
+" Turn off for now -- turn back on after plugins
+" filetype off
+" filetype plugin indent off
+
+" initiate vim-plug
+" call plug#begin('~/.config/nvim/bundle/')
 "
+" **** DO PLUGIN STUFF HERE
+"
+" end plugin definition
+" call plug#end()            " required for vim-plug
+
 " filetype off for plugins to load correctly -- turn it on now
-filetype plugin indent on
+" filetype plugin indent on
+" ---------------------- End Plugin Management ----------------------
+
+" ---------------------- Color Schemes ----------------------
+"  Do after plugin stuff, otherwise there seems to be problems. Not sure why.
+
+" **** Color scheme (terminal)
+"set t_Co=256
+
+if (has("termguicolors"))                                                               
+  set termguicolors                                                                     
+endif
+
+" Palenight
+set background=dark
+" colorscheme palenight
+
+" Solarized
+"let g:solarized_termcolors=256
+"let g:solarized_termtrans=1
+" put https://raw.github.com/altercation/vim-colors-solarized/master/colors/solarized.vim
+" in ~/.config/nvim/colors/ and uncomment:
+"colorscheme solarized
+
+" Wombat
+" set the color theme to wombat256
+"colorscheme wombat256
+" and set the mark color to DarkSlateGray
+"highlight ColorColumn ctermbg=lightgray guibg=lightgray
+
+" set spelling errors to use underlines rather than red squiggly in terminals.
+" The red squiggly does not show up in terminals.
+" from solarized.vim color scheme file (for reference, not to be uncommented)
+"exe "hi! SpellBad"       .s:fmt_curl   .s:fg_none   .s:bg_none    .s:sp_red
+"exe "hi! SpellCap"       .s:fmt_curl   .s:fg_none   .s:bg_none    .s:sp_violet
+"exe "hi! SpellRare"      .s:fmt_curl   .s:fg_none   .s:bg_none    .s:sp_cyan
+"exe "hi! SpellLocal"     .s:fmt_curl   .s:fg_none   .s:bg_none    .s:sp_yellow
+
+if &termguicolors
+  hi SpellBad gui=undercurl cterm=underline term=underline ctermfg=red
+  hi SpellCap gui=undercurl cterm=underline term=underline ctermfg=magenta
+  hi SpellRare gui=undercurl cterm=underline term=underline ctermfg=cyan
+  hi SpellLocal gui=undercurl cterm=underline term=underline ctermfg=yellow
+else
+  hi SpellBad gui=undercurl cterm=underline term=underline ctermbg=DarkMagenta ctermfg=Yellow
+  hi SpellCap gui=undercurl cterm=underline term=underline ctermfg=magenta
+  hi SpellRare gui=undercurl cterm=underline term=underline ctermfg=cyan
+  hi SpellLocal gui=undercurl cterm=underline term=underline ctermbg=Magenta ctermfg=LightYellow
+endif
+
+" set spelling language, but turn spelling check off by default.
+" Allow ftplugin/.vim files turn it on if wanted.
+set spelllang=en_us
+set nospell
 
 " Format options
 " Set formating options after filetype plugin runs to prevent
-" them from being overwritten by ftplugin
+"" them from being overwritten by ftplugin
 "set formatoptions=tcqrn1
 "tcq is default
 set formatoptions=tcqr
@@ -234,6 +289,15 @@ setlocal formatoptions-=o
 
 " ---------------------- USER FUNCTIONS ----------------------
 "
+" Show syntax highlighting groups for word under cursor
+function! SynStack()
+    if !exists("*synstack")
+        return
+    endif
+    echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+endfunc
+command! CHECKSYNTAX call SynStack()
+
 " Prose or Word Processor Mode
 func! Prose()
     echo "Enter Prose/Word Processor Mode (user function)"
