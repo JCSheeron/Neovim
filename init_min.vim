@@ -1,4 +1,5 @@
-" ---------------------- USABILITY CONFIGURATION ---------------------- "  Minimal config file
+" ---------------------- USABILITY CONFIGURATION ----------------------
+"  Minimal config file
 
 " don't make vim compatible with vi, otherwise it conflicts with Vundle and
 " other plugins
