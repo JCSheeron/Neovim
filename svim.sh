@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Batch file open a file in vim using 'sudo vim'.
 # If the specified file exists:
 #   If a file with the same name with '.orig' appended does not exist,
