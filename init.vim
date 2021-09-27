@@ -262,7 +262,7 @@ set autoindent      " autoindent based on line above, works most of the time
 set smartindent     " smarter indent for C-like languages
 " default to 4 tabs.  
 " For the amount of space used for a new tab use shiftwidth.
-" Set file type specifics in the ~/.vim/ftplugin/<filetype.vim> file
+" Set file type specifics in the ~/.config/nvim/after/ftplugin/<filetype.vim> file
 set shiftwidth=4    " when reading, tabs are 4 spaces
 set softtabstop=4   " in insert mode, tabs are 4 spaces
 set tabstop=4
