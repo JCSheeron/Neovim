@@ -365,7 +365,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Used honza/vim-snippets as the snippet source. Made a copy in a folder I could control and then
 " removed it so I had control of the snippets
 "Plug 'honza/vim-snippets'
-let g:coc_global_extensions = ['coc-css', 'coc-html', 'coc-json', 'coc-prettier', 'coc-tsserver', 'coc-pyright', 'coc-snippets', 'coc-sh']
+let g:coc_global_extensions = ['coc-css', 'coc-html', 'coc-json', 'coc-yaml', 'coc-prettier', 'coc-tsserver', 'coc-pyright', 'coc-snippets', 'coc-sh']
 
 
 " Use Emmet for Web Dev HTML, CSS, etc.
