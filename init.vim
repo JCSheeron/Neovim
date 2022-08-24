@@ -364,6 +364,8 @@ Plug 'neovim/nvim-lspconfig'
 
 " coc for auto complete, linting, code fixing
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" set coc path in .profile instead. Could be in .bashrc, but then gui launch path is wrong?? Not sure about this.
+" let g:coc_node_path = '/home/jcsheeron/.nvm/versions/node/v16.10.0/bin/node'
 " Used honza/vim-snippets as the snippet source. Made a copy in a folder I could control and then
 " removed it so I had control of the snippets
 "Plug 'honza/vim-snippets'

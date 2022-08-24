@@ -15,11 +15,9 @@
     "python"
   ],
   // coc-snippets make vim select first item on completion
-
   // snippets preferences
   "suggest.noselect": false,
   "snippets.userSnippetsDirectory": "/home/jcsheeron/.config/nvim/snippets",
-
   "snippets.extends": {
     // extend file type snippets with other file types
     "cpp": ["c"],
@@ -39,14 +37,16 @@
   },
 
   // set up eslint
-  "eslint.enable": true,
-  "eslint.autoFix": false,
-  "eslint.autoFixOnSave": false,
-  "eslint.run": "onSave",
-  "eslint.packageManager": "npm",
+  // commented these out, warning that eslint properties are not allowed
+  // eslint may no longer be installed -- using prettier instead?
+  //   "eslint.enable": true,
+  //   "eslint.autoFix": false,
+  //  "eslint.autoFixOnSave": false,
+  //  "eslint.run": "onSave",
+  //  "eslint.packageManager": "npm",
   // "eslint.options": {"configFile": "/home/jcsheeron/.config/nvim/.eslintrc.js"},
 
-  // coc-prettier
+  // coc-prettier (for js and related)
   "prettier.singleQuote": true,
   "prettier.trailingComma": "es5",
   "prettier.bracketSpacing": true,
@@ -71,5 +71,9 @@
   "javascript.validate.enable": false,
   "javascript.format.insertSpaceAfterFunctionKeywordForAnonymousFunctions": true,
   "javascript.preferences.quoteStyle": "single",
-  "javascript.updateImportsOnFileMove.enable": false
+  "javascript.updateImportsOnFileMove.enable": false,
+
+  // python pyright related
+  "python.formatting.provider": "black",
+  "python.formatting.blackPath": "~/.local/bin/black"
 }
