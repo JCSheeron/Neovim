@@ -1,9 +1,14 @@
 {
-  // coc-html
-  "html.filetypes": ["html", "handlebars", "htmldjango", "blade"],
-  "html.format.indentHandlebars": true,
-
   // coc preferences
+
+  // how to show errors
+  // show on the current line
+  //"diagnostic.checkCurrentLine": true,
+
+  // show all
+  "diagnostic.virtualText": true,
+  "diagnostic.virtualTextCurrentLineOnly": false,
+
   "coc.preferences.formatOnSaveFiletypes": [
     "javascript",
     "javascriptreact",
@@ -14,6 +19,10 @@
     "handlebars",
     "python"
   ],
+  // coc-html
+  "html.filetypes": ["html", "handlebars", "htmldjango", "blade"],
+  "html.format.indentHandlebars": true,
+
   // coc-snippets make vim select first item on completion
   // snippets preferences
   "suggest.noselect": false,

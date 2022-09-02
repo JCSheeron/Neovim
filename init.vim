@@ -490,6 +490,62 @@ Plug 'vim-pandoc/vim-pandoc-syntax'
 let g:pandoc#filetypes#handled = ["pandoc", "markdown"]
 "let g:pandoc#filetypes#pandoc_markdown = 0
 
+" Markdown table mode, table generator
+Plug 'dhruvasagar/vim-table-mode'
+# see https://github.com/dhruvasagar/vim-table-mode
+# Key mappings:
+" Make a table on the fly: <leader>tm by default, or :TableModeToggle
+" By default, toggle table mode on/off with <leader>tm
+" map <leader>tm :TableModeToggle<CR> " This is the default mapping
+"
+" Table-ize exiting content:
+" Visually select a csv section and call <leader>tt OR :Tableize 
+" map <leader>tt :Tableize<CR> " mapped by default.
+" Use a different delimiter than comma (,) by 
+" calling :Tableize/{pattern}  e.g. :Tableize/; would use a semicolon (;)
+"
+" Cell text object:
+" i| and a| for insert/append inner and around
+"
+" Delete row: <leader>tdd or preceed with [count] to delete multiple rows
+" Defined by option g:table_mode_delete_row_map
+"
+" Delete column: <leader>tdc (defined by option g:table_mode_delete_column_map)
+"
+" Insert column: <leader>tic (defined by the option
+" g:table_mode_insert_column_after_map (default) or g:table_mode_insert_column_before_map
+
+" For vim-table
+" 1. Enter the first line (header) using | as a colum delimiter
+" 2. In the second line without leaving insert mode, enter || to enter a horizontal line.
+" 3. Subsequent lines use | as a column delimiter
+"
+" let g:table_mode_corner='|'
+let g:table_mode_corner='+'
+let g:table_mode_align_char=':' " probably default
+" Use the align char (:) to 'pull' the contents to one side. e.g.:
+" | Right | Left | Default | Center |
+" |------:|:-----|---------|:------:|
+" |   12  |  12  |    12   |    12  | 
+
+" From read.md on github,
+" The following funcion and remap allows
+" || or __ to enable/disable table mode
+function! s:isAtStartOfLine(mapping)
+  let text_before_cursor = getline('.')[0 : col('.')-1]
+  let mapping_pattern = '\V' . escape(a:mapping, '\')
+  let comment_pattern = '\V' . escape(substitute(&l:commentstring, '%s.*$', '', ''), '\')
+  return (text_before_cursor =~? '^' . ('\v(' . comment_pattern . '\v)?') . '\s*\v' . mapping_pattern . '\v$')
+endfunction
+
+inoreabbrev <expr> <bar><bar>
+          \ <SID>isAtStartOfLine('\|\|') ?
+          \ '<c-o>:TableModeEnable<cr><bar><space><bar><left><left>' : '<bar><bar>'
+inoreabbrev <expr> __
+          \ <SID>isAtStartOfLine('__') ?
+          \ '<c-o>:silent! TableModeDisable<cr>' : '__'
+
+
 " Plug vim-pencil for writing
 " NOTE: This will change wrapping behavior set with textwidth above
 Plug 'reedes/vim-pencil'
