@@ -3,6 +3,7 @@
 " key mappings
 
 " Python specific settings
+setlocal colorcolumn=79,100
 setlocal textwidth=100
 
 setlocal expandtab       " use spaces instead of tabs

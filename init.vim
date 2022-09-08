@@ -59,7 +59,8 @@ set lazyredraw
 " enable mouse support for scrolling
 set mouse=a
 
-" make a mark for column 80, but wrap after 120 columnns
+" Make a mark for column 80.
+" textwidth controls width of inserted text and comments. See formatoptions.
 " Filetype specifics are set below
 " NOTE: vim-pencil plugin will alter this behavior when active
 set colorcolumn=80
@@ -492,8 +493,8 @@ let g:pandoc#filetypes#handled = ["pandoc", "markdown"]
 
 " Markdown table mode, table generator
 Plug 'dhruvasagar/vim-table-mode'
-# see https://github.com/dhruvasagar/vim-table-mode
-# Key mappings:
+" see https://github.com/dhruvasagar/vim-table-mode
+" Key mappings:
 " Make a table on the fly: <leader>tm by default, or :TableModeToggle
 " By default, toggle table mode on/off with <leader>tm
 " map <leader>tm :TableModeToggle<CR> " This is the default mapping
