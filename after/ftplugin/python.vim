@@ -3,8 +3,8 @@
 " key mappings
 
 " Python specific settings
-setlocal colorcolumn=79,100
-setlocal textwidth=100
+setlocal colorcolumn=79,99
+setlocal textwidth=99
 
 setlocal expandtab       " use spaces instead of tabs
 setlocal autoindent      " autoindent based on line above, works most of the time
