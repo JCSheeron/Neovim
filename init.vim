@@ -819,6 +819,23 @@ endfu
 
 command! LANGOFF call LangOff()
 
+func! SpanishOn()
+    " ACLON no ACL for spanish
+    " spelling and thesaurus
+    setlocal spelllang=es
+    setlocal spell 
+    " set thesaurus+= <path to thesaurus file>
+endfu
+
+command! SPANISH call SpanishOn()
+
+func! SpanishOff()
+    " ACLOFF no ACL for spanish
+    set nospell
+endfu
+
+command! NOSPANISH call SpanishOff()
+
 " Prose or Word Processor Mode
 func! Prose()
     echo "Enter Prose/Word Processor Mode (user function)"
@@ -851,10 +868,25 @@ func! Prose()
 
     " Turn on Limelight
     "Limelight
-
 endfu
-" command! WP call Prose() " Word Processing
+
+" Turn off Prose mode
+func! NoProse()
+  echo "Exit Prose/Word Processor Mode (user function)"
+  " re-detect file type 
+  filetype detect
+  " turn off language helpers
+  call LangOff()
+  setlocal formatoptions=tcqr
+  " turn off Goyo
+  Goyo!
+endfu
+
+" Turn on and off prose/word processing
+command! WP call Prose() " Word Processing
+command! NOWP call Prose() " Word Processing
 command! PROSE call Prose()
+command! NOPROSE call NoProse()
 
 " Create PDF using vim-pandoc
 " pdflatex and xelatex are two pdf engine choices.
