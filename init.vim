@@ -108,6 +108,18 @@ set splitright
 " and writes the buffer to the current file name
 cmap Sw w !sudo tee > /dev/null %
 
+" remap j and k to scroll by visual lines
+nnoremap j gj
+nnoremap k gk
+
+" As another option, you can map the arrow keys to scroll by visual lines
+"imap <up> <C-O>gk
+"imap <down> <C-O>gj
+"nmap <up> gk
+"nmap <down> gj
+"vmap <up> gk
+"vmap <down> gj
+
 " FOR TRAINING, Remap arrow keys in normal mode to not do anyting... at least for now
 noremap <Up> <nop>
 noremap <Down> <nop>
@@ -128,6 +140,10 @@ imap jj <Esc>l
 " map <leader>o in normal mode to insert a line below without staying in insert mode
 nmap <leader>O O<Esc>
 nmap <leader>o o<Esc>
+
+" keep visual block selection active after changing indent. Usually selection is lost (annoying)
+vmap > >gv
+vmap < <gv
 
 " Make navigation for split windows easier
 " Use the normal navigation keys and Ctrl
