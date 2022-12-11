@@ -63,13 +63,25 @@ set mouse=a
 " textwidth controls width of inserted text and comments. See formatoptions.
 " Filetype specifics are set below
 " NOTE: vim-pencil plugin will alter this behavior when active
-set colorcolumn=80
+set colorcolumn=79,119
 set textwidth=120
 " Wrap and linebreak change how long lines are displayed, but don't alter the file content.
 set wrap
 set linebreak
 
 " set file type specifics in the ~/.vim/ftplugin/<filetype.vim> file
+" for the shell scripts, default to bash
+" otherwise default is sh 
+" vim seems to consider sh and bash the same, so is_bash does not seem to do anything
+let g:is_bash=1
+" syntax folding
+" let g:sh_fold_enabled= 0     (default, no syntax folding)
+" let g:sh_fold_enabled= 1     (enable function folding)
+" let g:sh_fold_enabled= 2     (enable heredoc folding)
+" let g:sh_fold_enabled= 4     (enable if/do/for folding)
+" Add folding togeher to enable multiple opitons
+let g:sh_fold_enabled=7 " function, heredoc, and if/do/for folding
+
 
 " by default, in insert mode backspace won't delete over line breaks, or 
 " automatically-inserted indentation, let's change that
@@ -106,7 +118,8 @@ set splitright
 " Allow saving of files as sudo when I forgot to open them as sudo.
 " This sends the buffer contents to the shell command tee which is run as sudo,
 " and writes the buffer to the current file name
-cmap Sw w !sudo tee > /dev/null %
+" Does not work with Neovim
+" cmap Sw w !sudo tee > /dev/null %
 
 " remap j and k to scroll by visual lines
 nnoremap j gj
@@ -274,6 +287,8 @@ au BufNewFile,BufRead *.ejs set filetype=html
 au BufNewFile,BufRead *.hbs set filetype=handlebars
 " treat *.js, *.mjs, *.cjs as javascript
 au BufNewFile,BufRead *.js,*.cjs,*.mjs set filetype=javascript
+" treat arduino *.ino and *.pde as c++
+au BufRead,BufNewFile *.ino,*.pde set filetype=cpp
 
 " Indentation
 set expandtab       " use spaces instead of tabs
@@ -378,6 +393,9 @@ Plug 'kshenoy/vim-signature'
 " coc-sh (shell) uses LSP for example
 Plug 'neovim/nvim-lspconfig'
 
+" Arduino syntax highlighting
+" had some sort of error, so manually 
+Plug 'sudar/vim-arduino-syntax'
 
 " coc for auto complete, linting, code fixing
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -386,7 +404,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Used honza/vim-snippets as the snippet source. Made a copy in a folder I could control and then
 " removed it so I had control of the snippets
 "Plug 'honza/vim-snippets'
-let g:coc_global_extensions = ['coc-css', 'coc-html', 'coc-json', 'coc-yaml', 'coc-prettier', 'coc-tsserver', 'coc-pyright', 'coc-snippets', 'coc-sh']
+let g:coc_global_extensions = ['coc-css', 'coc-html', 'coc-json', 'coc-prettier', 'coc-pyright', 'coc-sh', 'coc-snippets', 'coc-tsserver', 'coc-yaml']
 
 
 " Use Emmet for Web Dev HTML, CSS, etc.
