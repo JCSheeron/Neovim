@@ -274,6 +274,8 @@ au BufNewFile,BufRead *.ejs set filetype=html
 au BufNewFile,BufRead *.hbs set filetype=handlebars
 " treat *.js, *.mjs, *.cjs as javascript
 au BufNewFile,BufRead *.js,*.cjs,*.mjs set filetype=javascript
+" use c++ for arduino *.ino and *.pde
+au BufRead,BufNewFile *.ino,*.pde set filetype=cpp
 
 " Indentation
 set expandtab       " use spaces instead of tabs
@@ -377,7 +379,8 @@ Plug 'kshenoy/vim-signature'
 " language server client.
 " coc-sh (shell) uses LSP for example
 Plug 'neovim/nvim-lspconfig'
-
+" Arduino syntax highlighting
+Plug 'sudar/vim-arduino-syntax'
 
 " coc for auto complete, linting, code fixing
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
