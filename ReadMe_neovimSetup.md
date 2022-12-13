@@ -84,6 +84,36 @@ this reqirement isn't met.
 - Coc requires nodejs.  If nodejs is not installed, neovim should work, but CoC will
 give an error on startup before opening a buffer, and on the status line once
 a buffer is opened.
+
+#### Install Node with NVM (recommended)
+- You can install node via nvm (node version manager). This seems to be smooth.
+Github:
+    
+    https://github.com/nvm-sh/nvm
+    
+Substitue most recent version in the below command to install nvm:
+    
+    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.2/install.sh | bash
+    
+Running the above curl command downloads a script and runs it. The script clones the nvm repository to ~/.nvm, and attempts to add the source lines from the snippet below to the correct profile file (~/.bash_profile, ~/.zshrc, ~/.profile, or ~/.bashrc).
+
+See more details on github page above.
+
+Source .bashrc or restart terminal
+
+To verify that nvm has been installed, do:
+    
+    command -v nvm
+
+To download, compile, and install the latest release of node, do this:
+
+    nvm install node # "node" is an alias for the latest version
+
+To install a specific version of node:
+
+    nvm install 14.7.0 # or 16.3.0, 12.22.1, etc
+
+#### Install NodeJs Manually
 - To install nodejs
 (assuming ubuntu or Debian, but may vary with OS)
 Using Ubuntu
