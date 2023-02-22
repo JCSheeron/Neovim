@@ -172,6 +172,7 @@ nnoremap <silent> "" :registers ".0123456789abcdefghijklmnopqrstuvwxyz-*+%/#<CR>
 
 " remap keys for coc-prettier
 " use leader f for Format
+" Note: Python Black formatter does not support format selected
 vmap <leader>f <Plug>(coc-format-selected)
 nmap <leader>f <Plug>(coc-format-selected)
 
@@ -693,6 +694,8 @@ call neomake#configure#automake('w')
 " normal mode (after 1s; no delay when writing).
 "call neomake#configure#automake('nrwi', 500)
 "
+" for python, not sure if this will conflict with coc-pyright. Try it for now.
+let g:neomake_python_enabled_makers = ['pylint']
 " I am not sure how the enable_makers = ['eslint'] affects project vs global. 
 " It seems to then not work well with project configs, paticularly in parent folders.
 let g:neomake_javascript_enabled_makers = ['eslint']

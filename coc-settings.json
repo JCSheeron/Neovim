@@ -84,5 +84,10 @@
 
   // python pyright related
   "python.formatting.provider": "black",
-  "python.formatting.blackPath": "~/.local/bin/black"
+  "python.formatting.blackPath": "~/.local/bin/black",
+  "python.formatting.blackArgs": [],
+  "python.linting.enabled": true,
+  "python.linting.pylintEnabled": true,
+  // make consistent with black. Disable E501 to allow max line param to work
+  "python.linting.pylintArgs": ["--max-line-length=88"]
 }
