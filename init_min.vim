@@ -30,6 +30,7 @@ set backupdir=~/.config/nvim/.backup//
 set patchmode=.orig
 
 " turn on syntax highlighting
+let python_highlight_all=1
 syntax on
 
 " show line numbers
@@ -40,7 +41,11 @@ set ruler
 
 " status bar, mode, command
 set laststatus=2 
-set showmode
+
+" last line
+" showmode is not needed with lightline plugin (cfg below)
+"set showmode
+set noshowmode
 set showcmd
 
 " help quick screen redraw
@@ -53,11 +58,13 @@ set lazyredraw
 " enable mouse support for scrolling
 set mouse=a
 
-" make a mark for column 80, but wrap after 120 columnns
+" Make a mark for column 80.
+" textwidth controls width of inserted text and comments. See formatoptions.
 " Filetype specifics are set below
-set colorcolumn=80
+" NOTE: vim-pencil plugin will alter this behavior when active
+set colorcolumn=79,119
 set textwidth=120
-" set wrap on by default
+" Wrap and linebreak change how long lines are displayed, but don't alter the file content.
 set wrap
 set linebreak
 
@@ -98,6 +105,18 @@ set splitright
 " and writes the buffer to the current file name
 cmap Sw w !sudo tee > /dev/null %
 
+" remap j and k to scroll by visual lines
+nnoremap j gj
+nnoremap k gk
+
+" As another option, you can map the arrow keys to scroll by visual lines
+"imap <up> <C-O>gk
+"imap <down> <C-O>gj
+"nmap <up> gk
+"nmap <down> gj
+"vmap <up> gk
+"vmap <down> gj
+
 " FOR TRAINING, Remap arrow keys in normal mode to not do anyting... at least for now
 noremap <Up> <nop>
 noremap <Down> <nop>
@@ -119,6 +138,10 @@ imap jj <Esc>l
 nmap <leader>O O<Esc>
 nmap <leader>o o<Esc>
 
+" keep visual block selection active after changing indent. Usually selection is lost (annoying)
+vmap > >gv
+vmap < <gv
+
 " Make navigation for split windows easier
 " Use the normal navigation keys and Ctrl
 nnoremap <C-J> <C-W><C-J>
@@ -131,6 +154,8 @@ nnoremap <C-H> <C-W><C-H>
 nnoremap = +
 
 " opening additional buffers (files)
+" These make it easier to open a file in the current directory by
+" prepending the current directory
 map <leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
 map <leader>t :tabe <C-R>=expand("%:p:h") . "/" <CR>
 map <leader>sp :sp <C-R>=expand("%:p:h") . "/" <CR>
@@ -154,7 +179,9 @@ au BufNewFile,BufRead *.js,*.cjs,*.mjs set filetype=javascript
 set expandtab       " use spaces instead of tabs
 set autoindent      " autoindent based on line above, works most of the time
 set smartindent     " smarter indent for C-like languages
-" default to 4 tabs.  File specific settings below
+" default to 4 tabs.  
+" For the amount of space used for a new tab use shiftwidth.
+" Set file type specifics in the ~/.config/nvim/after/ftplugin/<filetype.vim> file
 set shiftwidth=4    " when reading, tabs are 4 spaces
 set softtabstop=4   " in insert mode, tabs are 4 spaces
 set tabstop=4
@@ -220,15 +247,18 @@ set wildmode=list:longest
 "  Do after plugin stuff, otherwise there seems to be problems. Not sure why.
 
 " **** Color scheme (terminal)
-"set t_Co=256
+set t_Co=256
 
 if (has("termguicolors"))                                                               
   set termguicolors                                                                     
 endif
 
 " Palenight
-set background=dark
+" set background=dark
 " colorscheme palenight
+
+" Desert (built in)
+colorscheme desert
 
 " Solarized
 "let g:solarized_termcolors=256
@@ -243,8 +273,10 @@ set background=dark
 " and set the mark color to DarkSlateGray
 "highlight ColorColumn ctermbg=lightgray guibg=lightgray
 
-" set spelling errors to use underlines rather than red squiggly in terminals.
-" The red squiggly does not show up in terminals.
+" Some terminals can't show squiggly lines, so spelling errors won't show.
+" Set spelling errors to use underlines rather than red squiggly in terminals.
+" Also some color schemes have difficult/impossible to read highlights depending
+" on if termguicolors is on or off.  Provide a easy place to customize.
 " from solarized.vim color scheme file (for reference, not to be uncommented)
 "exe "hi! SpellBad"       .s:fmt_curl   .s:fg_none   .s:bg_none    .s:sp_red
 "exe "hi! SpellCap"       .s:fmt_curl   .s:fg_none   .s:bg_none    .s:sp_violet
@@ -270,7 +302,7 @@ set nospell
 
 " Format options
 " Set formating options after filetype plugin runs to prevent
-"" them from being overwritten by ftplugin
+" them from being overwritten by ftplugin
 "set formatoptions=tcqrn1
 "tcq is default
 set formatoptions=tcqr
@@ -298,6 +330,56 @@ function! SynStack()
     echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 endfunc
 command! CHECKSYNTAX call SynStack()
+"
+" Turn On Auto Correct/Abbrevitions -- Auto Correct List(ACL)
+func! ACLOn()
+    if filereadable(expand('$HOME/.config/nvim/abbreviations/aclAbbrev.vim'))
+      source $HOME/.config/nvim/abbreviations/aclAbbrev.vim
+    endif
+endfu
+
+command! ACLON call ACLOn()
+
+func! ACLOff()
+    abclear
+endfu
+
+command! ACLOFF call ACLOff()
+
+func! LangOn()
+    ACLON
+    " spelling and thesaurus
+    setlocal spelllang=en_us
+    setlocal spell 
+    " set thesaurus+= <path to thesaurus file>
+endfu
+
+command! LANGON call LangOn()
+
+func! LangOff()
+    ACLOFF
+    set nospell
+endfu
+
+command! LANGOFF call LangOff()
+
+func! SpanishOn()
+    " ACLON no ACL for spanish
+    " spelling and thesaurus
+    setlocal spelllang=es
+    setlocal spell 
+    " set thesaurus+= <path to thesaurus file>
+endfu
+
+command! SPANISH call SpanishOn()
+
+func! SpanishOff()
+    " ACLOFF no ACL for spanish
+    set nospell
+endfu
+
+command! NOSPANISH call SpanishOff()
+
 
 " Prose or Word Processor Mode
 func! Prose()
@@ -322,6 +404,5 @@ func! Prose()
 endfu
 command! WP call Prose()
 command! PROSE call Prose()
-
 
 
