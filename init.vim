@@ -287,7 +287,7 @@ au BufNewFile,BufRead *.ejs set filetype=html
 au BufNewFile,BufRead *.hbs set filetype=handlebars
 " treat *.js, *.mjs, *.cjs as javascript
 au BufNewFile,BufRead *.js,*.cjs,*.mjs set filetype=javascript
-" treat arduino *.ino and *.pde as c++
+" use c++ for arduino *.ino and *.pde
 au BufRead,BufNewFile *.ino,*.pde set filetype=cpp
 
 " Indentation
@@ -394,7 +394,6 @@ Plug 'kshenoy/vim-signature'
 Plug 'neovim/nvim-lspconfig'
 
 " Arduino syntax highlighting
-" had some sort of error, so manually 
 Plug 'sudar/vim-arduino-syntax'
 
 " coc for auto complete, linting, code fixing
@@ -405,7 +404,6 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " removed it so I had control of the snippets
 "Plug 'honza/vim-snippets'
 let g:coc_global_extensions = ['coc-css', 'coc-html', 'coc-json', 'coc-prettier', 'coc-pyright', 'coc-sh', 'coc-snippets', 'coc-tsserver', 'coc-yaml']
-
 
 " Use Emmet for Web Dev HTML, CSS, etc.
 Plug 'mattn/emmet-vim'
