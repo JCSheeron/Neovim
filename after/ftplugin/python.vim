@@ -8,7 +8,9 @@ setlocal textwidth=99
 
 setlocal expandtab       " use spaces instead of tabs
 setlocal autoindent      " autoindent based on line above, works most of the time
-setlocal smartindent     " smarter indent for C-like languages
+"setlocal smartindent     " smarter indent for C-like languages
+setlocal nosmartindent    " try off. Comments on column 0 don't get indented with this set
+
 " default to 4 tabs.  
 setlocal shiftwidth=4    " when reading, t:helpabs are 4 spaces
 setlocal softtabstop=4   " in insert mode, tabs are 4 spaces

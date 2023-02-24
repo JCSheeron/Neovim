@@ -185,6 +185,7 @@ nnoremap <silent> "" :registers ".0123456789abcdefghijklmnopqrstuvwxyz-*+%/#<CR>
 
 " remap keys for coc-prettier
 " use leader f for Format
+" Note: Python Black formatter does not support format selected
 vmap <leader>f <Plug>(coc-format-selected)
 nmap <leader>f <Plug>(coc-format-selected)
 
@@ -392,7 +393,6 @@ Plug 'kshenoy/vim-signature'
 " language server client.
 " coc-sh (shell) uses LSP for example
 Plug 'neovim/nvim-lspconfig'
-
 " Arduino syntax highlighting
 Plug 'sudar/vim-arduino-syntax'
 
@@ -709,6 +709,8 @@ call neomake#configure#automake('w')
 " normal mode (after 1s; no delay when writing).
 "call neomake#configure#automake('nrwi', 500)
 "
+" for python, not sure if this will conflict with coc-pyright. Try it for now.
+let g:neomake_python_enabled_makers = ['pylint']
 " I am not sure how the enable_makers = ['eslint'] affects project vs global. 
 " It seems to then not work well with project configs, paticularly in parent folders.
 let g:neomake_javascript_enabled_makers = ['eslint']
@@ -806,6 +808,15 @@ setlocal formatoptions-=o
 " run JSHint when a file with .js extension is saved
 " this requires the jsHint2 plugin
 "autocmd BufWritePost *.js silent :JSHint
+
+" trigger python formatting before saving the file
+" This is bbecause calling the CocAction like below manually works,
+" but relying on coc format on save does not work because it times out
+" before the formatting is done, and the file is left saved but unchanged.
+aug python
+  au!
+  autocmd BufWritePre *.py call CocAction('format')
+aug END
 
 " ---------------------- USER FUNCTIONS ----------------------
 
