@@ -794,6 +794,15 @@ setlocal formatoptions-=o
 " this requires the jsHint2 plugin
 "autocmd BufWritePost *.js silent :JSHint
 
+" trigger python formatting before saving the file
+" This is bbecause calling the CocAction like below manually works,
+" but relying on coc format on save does not work because it times out
+" before the formatting is done, and the file is left saved but unchanged.
+aug python
+  au!
+  autocmd BufWritePre *.py call CocAction('format')
+aug END
+
 " ---------------------- USER FUNCTIONS ----------------------
 
 " Show syntax highlighting groups for word under cursor

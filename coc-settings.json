@@ -8,7 +8,10 @@
   // show all
   "diagnostic.virtualText": true,
   "diagnostic.virtualTextCurrentLineOnly": false,
-
+  // Note: Python format on save with black seems to timeout, and not
+  // format the file. The willSaveHandlerTimeout property didn't seem
+  // to fix it. Work around: Remove python from the list below,
+  // and run format manually using BufWritePre in init.vim
   "coc.preferences.formatOnSaveFiletypes": [
     "javascript",
     "javascriptreact",
@@ -16,9 +19,11 @@
     "css",
     "scss",
     "html",
-    "handlebars",
-    "python"
+    "handlebars"
   ],
+
+  //"coc.preferences.willSaveHandlerTimeout": 1000,
+
   // coc-html
   "html.filetypes": ["html", "handlebars", "htmldjango", "blade"],
   "html.format.indentHandlebars": true,
@@ -84,10 +89,9 @@
 
   // python pyright related
   "python.formatting.provider": "black",
-  "python.formatting.blackPath": "~/.local/bin/black",
+  "python.formatting.blackPath": "/home/jcsheeron/.local/bin/black",
   "python.formatting.blackArgs": [],
   "python.linting.enabled": true,
   "python.linting.pylintEnabled": true,
-  // make consistent with black. Disable E501 to allow max line param to work
   "python.linting.pylintArgs": ["--max-line-length=88"]
 }
