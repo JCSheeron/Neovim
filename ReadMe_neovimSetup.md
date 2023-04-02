@@ -153,6 +153,18 @@ Install xclip:
 
 sudo apt-get install xclip
 
+Need X11 Forwarding on server and client.
+**Server**
+In `/etc/ssh/sshd_config` 
+`X11Forwarding yes` 
+*Might* need `X11UseLocalhost no`
+
+**Client**
+In `/etc/ssh/ssh_config` or in `$HOME/.ssh/config`  need
+`ForwardX11 yes` 
+
+Need to install xauth tool:
+`$ sudo apt install xauth`
 
 # Make Veovim the default editor
 	select-editor
@@ -184,4 +196,17 @@ and then in usage in the pandoc command use:
 
 Note that in the pandoc-xnos documentation, it says that any use of `pandoc-citeproc` or `--bibliography=FILE` should come after the `pandoc-xnos` filter call.
 
+# Setup svim
+Usage: Use the script `svim <file>` as an alternative to `sudo vim <file>`. It manages .orig files better, 
+and has its own look and nvim configuration.
 
+I created a bash script (`svim.sh`) and a vim initialization file (`init_snvim.vim`) that work together to
+* Use Vim for sudo editing
+* Create a separate config (without all the plugins) for sudo editing. It was thought looking different and
+having the ability to have a different config while editing would be a good thing.
+* Manage the creation of .orig files.
+
+The `svim.sh` script and the `init_snvim.vim` file are already in the  neovim repo.
+
+**One additional step:** It is easiest to use if you create a link to this script in a path that is already in the `$PATH` variable e.g.:
+`ln -s $HOME/.config/nvim/svim.sh $HOME/.config/bin/svim` (note I left the .sh off the link, so usage should be `svim <file>` from anywhere once this link is in the path.

@@ -403,7 +403,10 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Used honza/vim-snippets as the snippet source. Made a copy in a folder I could control and then
 " removed it so I had control of the snippets
 "Plug 'honza/vim-snippets'
-let g:coc_global_extensions = ['coc-css', 'coc-html', 'coc-json', 'coc-prettier', 'coc-pyright', 'coc-sh', 'coc-snippets', 'coc-tsserver', 'coc-yaml']
+let g:coc_global_extensions = ['coc-clangd', 'coc-css', 'coc-html', 'coc-json', 'coc-prettier', 'coc-pyright', 'coc-snippets', 'coc-sh', 'coc-toml', 'coc-tsserver', 'coc-yaml']
+
+" ISort to sort python imports
+Plug 'brentyi/isort.vim'
 
 " Use Emmet for Web Dev HTML, CSS, etc.
 Plug 'mattn/emmet-vim'
@@ -710,7 +713,8 @@ call neomake#configure#automake('w')
 "call neomake#configure#automake('nrwi', 500)
 "
 " for python, not sure if this will conflict with coc-pyright. Try it for now.
-let g:neomake_python_enabled_makers = ['pylint']
+"let g:neomake_python_enabled_makers = ['pylint']
+let g:neomake_python_enabled_makers = []
 " I am not sure how the enable_makers = ['eslint'] affects project vs global. 
 " It seems to then not work well with project configs, paticularly in parent folders.
 let g:neomake_javascript_enabled_makers = ['eslint']
@@ -813,13 +817,30 @@ setlocal formatoptions-=o
 " This is bbecause calling the CocAction like below manually works,
 " but relying on coc format on save does not work because it times out
 " before the formatting is done, and the file is left saved but unchanged.
-aug python
-  au!
-  autocmd BufWritePre *.py call CocAction('format')
-aug END
+" aug python
+"   au!
+"   autocmd BufWritePre *.py :Isort
+"   autocmd BufWritePre *.py call CocAction('format')
+" aug END
 
 " ---------------------- USER FUNCTIONS ----------------------
 
+" Format using Coc
+" If this is a python file, call Isort first
+function! CocFormat()
+    " ISort was not handling user libraries very will.
+    " I didn't like the order it was putting imports in.
+    "if &ft == 'python'
+        ":Isort
+    "endif
+    call CocAction('format')
+endfunc
+command! FORMAT call CocFormat()
+
+" Call 
+"   autocmd BufWritePre *.py :Isort
+"   autocmd BufWritePre *.py call CocAction('format')
+"
 " Show syntax highlighting groups for word under cursor
 function! SynStack()
     if !exists("*synstack")

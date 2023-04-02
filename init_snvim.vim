@@ -302,6 +302,55 @@ function! SynStack()
 endfunc
 command! CHECKSYNTAX call SynStack()
 
+" Turn On Auto Correct/Abbrevitions -- Auto Correct List(ACL)
+func! ACLOn()
+    if filereadable(expand('$HOME/.config/nvim/abbreviations/aclAbbrev.vim'))
+      source $HOME/.config/nvim/abbreviations/aclAbbrev.vim
+    endif
+endfu
+
+command! ACLON call ACLOn()
+
+func! ACLOff()
+    abclear
+endfu
+
+command! ACLOFF call ACLOff()
+
+func! LangOn()
+    ACLON
+    " spelling and thesaurus
+    setlocal spelllang=en_us
+    setlocal spell 
+    " set thesaurus+= <path to thesaurus file>
+endfu
+
+command! LANGON call LangOn()
+
+func! LangOff()
+    ACLOFF
+    set nospell
+endfu
+
+command! LANGOFF call LangOff()
+
+func! SpanishOn()
+    " ACLON no ACL for spanish
+    " spelling and thesaurus
+    setlocal spelllang=es
+    setlocal spell 
+    " set thesaurus+= <path to thesaurus file>
+endfu
+
+command! SPANISH call SpanishOn()
+
+func! SpanishOff()
+    " ACLOFF no ACL for spanish
+    set nospell
+endfu
+
+command! NOSPANISH call SpanishOff()
+
 " Prose or Word Processor Mode
 func! Prose()
     echo "Enter Prose/Word Processor Mode (user function)"

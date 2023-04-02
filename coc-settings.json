@@ -12,17 +12,20 @@
   // format the file. The willSaveHandlerTimeout property didn't seem
   // to fix it. Work around: Remove python from the list below,
   // and run format manually using BufWritePre in init.vim
+  "coc.preferences.formatOnSave": true,
   "coc.preferences.formatOnSaveFiletypes": [
+    "c",
+    "cpp",
+    "css",
+    "html",
+    "handlebars",
     "javascript",
     "javascriptreact",
     "json",
-    "css",
     "scss",
-    "html",
-    "handlebars"
+    "toml"
   ],
-
-  //"coc.preferences.willSaveHandlerTimeout": 1000,
+  "coc.preferences.willSaveHandlerTimeout": 3000,
 
   // coc-html
   "html.filetypes": ["html", "handlebars", "htmldjango", "blade"],
@@ -31,7 +34,7 @@
   // coc-snippets make vim select first item on completion
   // snippets preferences
   "suggest.noselect": false,
-  "snippets.userSnippetsDirectory": "/home/jcsheeron/.config/nvim/snippets",
+  "snippets.userSnippetsDirectory": "$HOME/.config/nvim/snippets",
   "snippets.extends": {
     // extend file type snippets with other file types
     "cpp": ["c"],
@@ -58,19 +61,17 @@
   //  "eslint.autoFixOnSave": false,
   //  "eslint.run": "onSave",
   //  "eslint.packageManager": "npm",
-  // "eslint.options": {"configFile": "/home/jcsheeron/.config/nvim/.eslintrc.js"},
+  // "eslint.options": {"configFile": "$HOME/.config/nvim/.eslintrc.js"},
 
   // coc-prettier (for js and related)
   "prettier.singleQuote": true,
   "prettier.trailingComma": "es5",
   "prettier.bracketSpacing": true,
-  "prettier.jsxBracketSameLine": false,
+  "prettier.bracketSameLine": false,
   "prettier.semi": true,
   "prettier.useTabs": false,
   "prettier.proseWrap": "preserve",
   "prettier.arrowParens": "always",
-  "prettier.eslintIntegration": true,
-  "prettier.tslintIntegration": true,
   "prettier.statusItemText": "<ᴀ-=> ᴘʀᴇᴛᴛɪᴇʀ",
 
   // coc-tsserver
@@ -80,16 +81,18 @@
 
   "typescript.validate.enable": false,
   "typescript.preferences.quoteStyle": "single",
-  "typescript.updateImportsOnFileMove.enable": false,
 
   "javascript.validate.enable": false,
   "javascript.format.insertSpaceAfterFunctionKeywordForAnonymousFunctions": true,
   "javascript.preferences.quoteStyle": "single",
-  "javascript.updateImportsOnFileMove.enable": false,
 
   // python pyright related
+  "pyright.organizeimports.provider": "isort",
+  "python.sortImports.path": "$HOME/.local/bin/isort",
+  // use project config file
+  // "python.sortImports.args": ["--profile", "black"],
   "python.formatting.provider": "black",
-  "python.formatting.blackPath": "/home/jcsheeron/.local/bin/black",
+  "python.formatting.blackPath": "$HOME/.local/bin/black",
   "python.formatting.blackArgs": [],
   "python.linting.enabled": true,
   "python.linting.pylintEnabled": true,

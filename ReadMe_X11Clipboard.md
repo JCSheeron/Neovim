@@ -17,7 +17,33 @@ This is because SSH X11-Forwarding requires authorization for connecting to
 the X server which is stored in ~/.Xauthority file and with the correct
 value for DISPLAY environment variable.
 
-Steps to use SSH X11-Forwarding for sudo or su:
+# Neovim Install Clipboard support
+
+- Run :checkhealth within NeoVim. If there is a error/warning about no
+clipboard support or no clipboard provider, there are several provider
+options, but two are xclip or xsel. 
+Install xsel:
+
+	sudo apt-get install xsel
+	
+Install xclip:
+
+sudo apt-get install xclip
+
+Need X11 Forwarding on server and client.
+**Server**
+In `/etc/ssh/sshd_config` 
+`X11Forwarding yes` 
+*Might* need `X11UseLocalhost no`
+
+**Client**
+In `/etc/ssh/ssh_config` or in `$HOME/.ssh/config`  need
+`ForwardX11 yes` 
+
+Need to install xauth tool:
+`$ sudo apt install xauth`
+
+# Steps to use SSH X11-Forwarding for sudo or su:
 
 1. Make sure you're already able to run graphical program via SSH X tunneling as normal user.
 

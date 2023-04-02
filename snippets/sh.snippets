@@ -104,3 +104,16 @@ snippet fun
 	function ${1:function_name}() {
 		${0:#function_body}
 	}
+
+# heredoc to write to a file
+snippet HEREDOCF
+	cat << EOF > ${1:file_name}
+	${0:text_body}
+	EOF
+
+# heredoc to redirect to a command
+snippet HEREDOCC
+	cat << EOF | ${1:command}
+	${0:text_body}
+	EOF
+

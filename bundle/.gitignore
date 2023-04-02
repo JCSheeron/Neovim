@@ -1,8 +1,8 @@
 # ignore the contents, but then add back in the bits we want to track
-#/*
+/*
 # don't ignore the .gitignore or the place holder file.
-#!.gitignore
-#!placeholder.txt
+!.gitignore
+!placeholder.txt
 
 # keep the contents for portablility, but ignore the internal .git files
 **/.git
