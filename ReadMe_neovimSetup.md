@@ -159,12 +159,13 @@ In `/etc/ssh/sshd_config`
 `X11Forwarding yes` 
 *Might* need `X11UseLocalhost no`
 
+Need to install xauth tool:
+`$ sudo apt install xauth`
+
 **Client**
 In `/etc/ssh/ssh_config` or in `$HOME/.ssh/config`  need
 `ForwardX11 yes` 
 
-Need to install xauth tool:
-`$ sudo apt install xauth`
 
 # Make Veovim the default editor
 	select-editor
