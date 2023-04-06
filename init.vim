@@ -118,7 +118,8 @@ set splitright
 " Allow saving of files as sudo when I forgot to open them as sudo.
 " This sends the buffer contents to the shell command tee which is run as sudo,
 " and writes the buffer to the current file name
-" Does not work with Neovim
+" Does not work with Neovim.
+" Instead use Plug 'lambdalisue/suda.vim' plugin below
 " cmap Sw w !sudo tee > /dev/null %
 
 " remap j and k to scroll by visual lines
@@ -353,6 +354,11 @@ filetype plugin indent off
 "
 " initiate vim-plug
 call plug#begin('~/.config/nvim/bundle/')
+
+" allow writing as sudo if you forgot to open the file as sudo
+" :SudaRead -- reopen current file as sudo
+" :SudaWrite -- save current file as sudo
+Plug 'lambdalisue/suda.vim'
 
 " Palenight solorscheme
 Plug 'drewtempelmeyer/palenight.vim'
@@ -824,6 +830,9 @@ setlocal formatoptions-=o
 " aug END
 
 " ---------------------- USER FUNCTIONS ----------------------
+" sudo read using suda.vim plugin
+command! SR SudaRead % " reopen current file with sudo
+command! SW SudaWrite % " write current file with sudo
 
 " Format using Coc
 " If this is a python file, call Isort first
