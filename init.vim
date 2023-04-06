@@ -844,7 +844,8 @@ function! CocFormat()
     "endif
     call CocAction('format')
 endfunc
-command! FORMAT call CocFormat()
+
+command! Format call CocFormat()
 
 " Call 
 "   autocmd BufWritePre *.py :Isort
@@ -857,9 +858,9 @@ function! SynStack()
     endif
     echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 endfunc
-command! CHECKSYNTAX call SynStack()
 
-"
+command! CheckSyntax call SynStack()
+
 " Turn On Auto Correct/Abbrevitions -- Auto Correct List(ACL)
 func! ACLOn()
     if filereadable(expand('$HOME/.config/nvim/abbreviations/aclAbbrev.vim'))
@@ -867,30 +868,32 @@ func! ACLOn()
     endif
 endfu
 
-command! ACLON call ACLOn()
-
 func! ACLOff()
     abclear
 endfu
 
-command! ACLOFF call ACLOff()
+command! AclOn call ACLOn()
+command! Acl call ACLOn()
+command! AclOff call ACLOff()
+command! NoAcl call ACLOff()
 
 func! LangOn()
-    ACLON
+    call ACLOn()
     " spelling and thesaurus
     setlocal spelllang=en_us
     setlocal spell 
     " set thesaurus+= <path to thesaurus file>
 endfu
 
-command! LANGON call LangOn()
-
 func! LangOff()
-    ACLOFF
+    call ACLOff()
     set nospell
 endfu
 
-command! LANGOFF call LangOff()
+command! LangOn call LangOn()
+command! Lang call LangOn()
+command! LangOff call LangOff()
+command! NoLang call LangOff()
 
 func! SpanishOn()
     " ACLON no ACL for spanish
@@ -900,14 +903,13 @@ func! SpanishOn()
     " set thesaurus+= <path to thesaurus file>
 endfu
 
-command! SPANISH call SpanishOn()
-
 func! SpanishOff()
     " ACLOFF no ACL for spanish
     set nospell
 endfu
 
-command! NOSPANISH call SpanishOff()
+command! Spanish call SpanishOn()
+command! NoSpanish call SpanishOff()
 
 " Prose or Word Processor Mode
 func! Prose()
@@ -957,9 +959,9 @@ endfu
 
 " Turn on and off prose/word processing
 command! WP call Prose() " Word Processing
-command! NOWP call Prose() " Word Processing
-command! PROSE call Prose()
-command! NOPROSE call NoProse()
+command! NoWP call Prose() " Word Processing
+command! Prose call Prose()
+command! NoProse call NoProse()
 
 " Create PDF using vim-pandoc
 " pdflatex and xelatex are two pdf engine choices.
@@ -980,8 +982,8 @@ func! PandocPdfNumbered()
   Pandoc pdf --pdf-engine=pdflatex -V geometry:"top=1.25in, bottom=1.0in, left=1.25in, right=1.00in" --number-sections --filter pandoc-xnos
 endfu
 
-command! PDF call PandocPdf()
-command! PDFNUM call PandocPdfNumbered()
+command! Pdf call PandocPdf()
+command! PdfNum call PandocPdfNumbered()
 
 " Make it easy to enable and disable LightLine
 function! LightLineOn()
@@ -994,8 +996,8 @@ function! LightLineOff()
   call lightline#disable()
 endfunction
 
-command! LIGHTLINE call LightLineOn()
-command! LIGHTLINEOFF call LightLineOff()
-command! NOLIGHTLINE call LightLineOff()
+command! LightLine call LightLineOn()
+command! LightLineOff call LightLineOff()
+command! NoLightLine call LightLineOff()
 
 
