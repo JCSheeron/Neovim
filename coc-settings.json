@@ -96,5 +96,15 @@
   "python.formatting.blackArgs": [],
   "python.linting.enabled": true,
   "python.linting.pylintEnabled": true,
-  "python.linting.pylintArgs": ["--max-line-length=88"]
+  "python.linting.pylintArgs": ["--max-line-length=88"],
+
+  // bash language server
+  "languageserver": {
+    "bash": {
+      "command": "bash-language-server",
+      "args": ["start"],
+      "filetypes": ["sh", "bash"],
+      "ignoredRootPaths": ["~"]
+    }
+  }
 }

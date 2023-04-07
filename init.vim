@@ -395,10 +395,13 @@ Plug 'kshenoy/vim-signature'
 "Plug 'Buffergator'
 
 " Language Server Protocol (LSP)
+" Note: Using neoclide coc and bash-language-server instead
 " This plugin is a collection of common configurations for the build in
 " language server client.
 " coc-sh (shell) uses LSP for example
-Plug 'neovim/nvim-lspconfig'
+" Note: Requires neovim 0.8 and above
+" Plug 'neovim/nvim-lspconfig'
+
 " Arduino syntax highlighting
 Plug 'sudar/vim-arduino-syntax'
 
@@ -731,7 +734,8 @@ let g:neomake_open_list=0 " don't open location-list on errors
 " ---------------------- LSP Setup ----------------------
 " For Bash Language Server using the nvim-lspconfig
 " This must go after call plug#end()
-lua require'lspconfig'.bashls.setup{}
+" Note: Using neoclide coc and bash-language-server instead
+" lua require'lspconfig'.bashls.setup{}
 
 
 " ---------------------- Color Schemes ----------------------
