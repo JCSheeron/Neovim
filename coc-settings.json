@@ -106,5 +106,15 @@
       "filetypes": ["sh", "bash"],
       "ignoredRootPaths": ["~"]
     }
+  },
+
+  // coc-diagnostic
+  "diagnostic-languageserver.filetypes": {
+    "vim": "vint",
+    "sh": "shellcheck"
+  },
+  "diagnostic-languageserver.formatFiletypes": {
+    "python": ["black", "isort"],
+    "sh": "shfmt"
   }
 }

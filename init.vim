@@ -409,10 +409,14 @@ Plug 'sudar/vim-arduino-syntax'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " set coc path in .profile instead. Could be in .bashrc, but then gui launch path is wrong?? Not sure about this.
 " let g:coc_node_path = '/home/jcsheeron/.nvm/versions/node/v16.10.0/bin/node'
+
+" Snippets
 " Used honza/vim-snippets as the snippet source. Made a copy in a folder I could control and then
 " removed it so I had control of the snippets
 "Plug 'honza/vim-snippets'
-let g:coc_global_extensions = ['coc-clangd', 'coc-css', 'coc-html', 'coc-json', 'coc-prettier', 'coc-pyright', 'coc-snippets', 'coc-sh', 'coc-toml', 'coc-tsserver', 'coc-yaml']
+
+" coc extensions
+let g:coc_global_extensions = ['coc-clangd', 'coc-css', 'coc-diagnostic', 'coc-html', 'coc-json', 'coc-prettier', 'coc-pyright', 'coc-snippets', 'coc-sh', 'coc-toml', 'coc-tsserver', 'coc-yaml']
 
 " ISort to sort python imports
 Plug 'brentyi/isort.vim'

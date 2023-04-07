@@ -26,19 +26,19 @@ function usage {
 }
 
 FILE=$1
-ORIGFILE=$FILE".orig"
-CFGFILE=$HOME"/.config/nvim/init_snvim.vim"
-ALTCFG=$HOME"/.config/nvim/init_min.vim"
+ORIGFILE="$FILE.orig"
+CFGFILE="$HOME/.config/nvim/init_snvim.vim"
+ALTCFG="$HOME/.config/nvim/init_min.vim"
 
 if [ -f "$FILE" ] && [ ! -f "$ORIGFILE" ]; then
     # the file exists, but the orig copy does not.
     # Create the orig copy. Make it read only, root owned, 
     # and set the immutable flag to prevent deletion.
-    echo "Making File "$ORIGFILE
-    sudo rsync -a $FILE $ORIGFILE
-    sudo chown root:root $ORIGFILE
-    sudo chmod a-w $ORIGFILE
-    sudo chattr +i $ORIGFILE
+    echo "Making File $ORIGFILE"
+    sudo rsync -a "$FILE" "$ORIGFILE"
+    sudo chown root:root "$ORIGFILE"
+    sudo chmod a-w "$ORIGFILE"
+    sudo chattr +i "$ORIGFILE"
 fi
 
 # enable xauthority with the sudo user
@@ -46,22 +46,22 @@ fi
 # An alternative may be to copy the users .Xauthority file over
 # to root.
 if [ -f "$HOME/.Xauthority" ]; then
-    disp1=$(xauth list $DISPLAY)
-    disp2=$(echo $DISPLAY)
-    sudo xauth add $disp1
-    sudo export DISPLAY=$disp2
+    disp1=$(xauth list "$DISPLAY")
+    disp2=$(echo "$DISPLAY")
+    sudo xauth add "$disp1"
+    export DISPLAY="$disp2"
 fi
 
 # See which cfg file to use
 if [ -f "$CFGFILE" ]; then
-    echo "Using vim config file: "$CFGFILE
-    sudo vim -u $CFGFILE $FILE
+    echo "Using vim config file: $CFGFILE"
+    sudo vim -u "$CFGFILE" "$FILE"
 elif [ -f "$ALTCFG" ]; then
-    sudo vim -u $ALTCFG $FILE
-    echo "Using vim config file: "$ALTCFG
+    sudo vim -u "$ALTCFG" "$FILE"
+    echo "Using vim config file: $ALTCFG"
 else
     echo "No vim config file found. Not using one"
-    sudo vim -u NONE $FILE
+    sudo vim -u NONE "$FILE"
 fi
 
 
