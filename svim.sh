@@ -41,6 +41,17 @@ if [ -f "$FILE" ] && [ ! -f "$ORIGFILE" ]; then
     sudo chattr +i $ORIGFILE
 fi
 
+# enable xauthority with the sudo user
+# by settign up xauthority and .Xauthority file for root.
+# An alternative may be to copy the users .Xauthority file over
+# to root.
+if [ -f "$HOME/.Xauthority" ]; then
+    disp1=$(xauth list $DISPLAY)
+    disp2=$(echo $DISPLAY)
+    sudo xauth add $disp1
+    sudo export DISPLAY=$disp2
+fi
+
 # See which cfg file to use
 if [ -f "$CFGFILE" ]; then
     echo "Using vim config file: "$CFGFILE
@@ -52,7 +63,5 @@ else
     echo "No vim config file found. Not using one"
     sudo vim -u NONE $FILE
 fi
-
-
 
 
