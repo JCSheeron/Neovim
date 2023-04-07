@@ -47,9 +47,9 @@ fi
 # to root.
 if [ -f "$HOME/.Xauthority" ]; then
     disp1=$(xauth list "$DISPLAY")
-    disp2=$(echo "$DISPLAY")
+    #disp2="$DISPLAY"
     sudo xauth add "$disp1"
-    export DISPLAY="$disp2"
+    export DISPLAY="$DISPLAY"
 fi
 
 # See which cfg file to use
