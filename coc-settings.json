@@ -1,13 +1,6 @@
 {
   // coc preferences
 
-  // how to show errors
-  // show on the current line
-  //"diagnostic.checkCurrentLine": true,
-
-  // show all
-  "diagnostic.virtualText": true,
-  "diagnostic.virtualTextCurrentLineOnly": false,
   // Note: Python format on save with black seems to timeout, and not
   // format the file. The willSaveHandlerTimeout property didn't seem
   // to fix it. Work around: Remove python from the list below,
@@ -109,12 +102,34 @@
   },
 
   // coc-diagnostic
+  // how to show errors
+  // show on the current line
+  //"diagnostic.checkCurrentLine": true,
+
+  // show all
+  "diagnostic.virtualText": false,
+  "diagnostic.virtualTextCurrentLineOnly": false,
   "diagnostic-languageserver.filetypes": {
     "vim": "vint",
+    "bash": "shellcheck",
     "sh": "shellcheck"
   },
   "diagnostic-languageserver.formatFiletypes": {
     "python": ["black", "isort"],
+    "bash": "shfmt",
     "sh": "shfmt"
+  },
+  "diagnostic-languageserver.linters": {
+    "command": "shellcheck",
+    "rootPatterns": [],
+    "isStdout": true,
+    "isStderr": false,
+    "debounce": 100,
+    "onSaveOnly": true,
+    "args": ["--format=gcc", "-"],
+    "offsetLine": 0,
+    "offsetColumn": 0,
+    "sourceName": "shellcheck",
+    "ignore": [".git", "dist/"]
   }
 }
