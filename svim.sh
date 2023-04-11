@@ -46,10 +46,13 @@ fi
 # An alternative may be to copy the users .Xauthority file over
 # to root.
 if [ -f "$HOME/.Xauthority" ]; then
+    # add the xauthority to the root user
     disp1=$(xauth list "$DISPLAY")
-    #disp2="$DISPLAY"
     sudo xauth add "$disp1"
-    export DISPLAY="$DISPLAY"
+    # export the root display variable`
+    sudo bash -c "export DISPLAY=$DISPLAY"
+    # a brute force hack to the above:
+    # sudo cp $HOME/.Xauthority /root/.Xauthority
 fi
 
 # See which cfg file to use
