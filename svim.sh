@@ -46,25 +46,24 @@ fi
 # An alternative may be to copy the users .Xauthority file over
 # to root.
 if [ -f "$HOME/.Xauthority" ]; then
-    # add the xauthority to the root user
-    disp1=$(xauth list "$DISPLAY")
-    sudo xauth add "$disp1"
-    # export the root display variable`
-    sudo bash -c "export DISPLAY=$DISPLAY"
-    # a brute force hack to the above:
+    # prepare to set the display and xauthority vars in the root env
+    # the xauthority to XAUTHORITY or ~/.Xauthority
+    xa="${XAUTHORITY-$HOME/.Xauthority}"
+    # a brute force hack to the above and below use of vars is:
     # sudo cp $HOME/.Xauthority /root/.Xauthority
 fi
 
 # See which cfg file to use
 if [ -f "$CFGFILE" ]; then
     echo "Using vim config file: $CFGFILE"
-    sudo vim -u "$CFGFILE" "$FILE"
+    # sudo "$xd" nvim -u "$CFGFILE" "$FILE"
+    sudo DISPLAY="$DISPLAY" XAUTHORITY="$xa" nvim -u "$CFGFILE" "$FILE"
 elif [ -f "$ALTCFG" ]; then
-    sudo vim -u "$ALTCFG" "$FILE"
     echo "Using vim config file: $ALTCFG"
+    #sudo "$xd" nvim -u "$ALTCFG" "$FILE"
+    sudo DISPLAY="$DISPLAY" XAUTHORITY="$xa" nvim -u "$ALTCFG" "$FILE"
 else
     echo "No vim config file found. Not using one"
-    sudo vim -u NONE "$FILE"
+    sudo DISPLAY="$DISPLAY" XAUTHORITY="$xa" nvim -u NONE "$FILE"
 fi
-
 
