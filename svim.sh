@@ -56,11 +56,9 @@ fi
 # See which cfg file to use
 if [ -f "$CFGFILE" ]; then
     echo "Using vim config file: $CFGFILE"
-    # sudo "$xd" nvim -u "$CFGFILE" "$FILE"
     sudo DISPLAY="$DISPLAY" XAUTHORITY="$xa" nvim -u "$CFGFILE" "$FILE"
 elif [ -f "$ALTCFG" ]; then
     echo "Using vim config file: $ALTCFG"
-    #sudo "$xd" nvim -u "$ALTCFG" "$FILE"
     sudo DISPLAY="$DISPLAY" XAUTHORITY="$xa" nvim -u "$ALTCFG" "$FILE"
 else
     echo "No vim config file found. Not using one"
