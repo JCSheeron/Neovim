@@ -752,8 +752,10 @@ if (has("termguicolors"))
   set termguicolors                                                                    
 endif
 
-" Palenight
+" tell vim to adjust colorscheme for what is 'inherited' from the terminal 
 set background=dark
+
+" Palenight
 colorscheme palenight
 
 " Solarized
