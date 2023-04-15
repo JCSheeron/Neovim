@@ -361,10 +361,14 @@ call plug#begin('~/.config/nvim/bundle/')
 Plug 'lambdalisue/suda.vim'
 
 " Palenight solorscheme
-Plug 'drewtempelmeyer/palenight.vim'
+" Plug 'drewtempelmeyer/palenight.vim'
+
+" Sonokai colorscheme
+Plug 'sainnhe/sonokai'
 
 " nerdtree file tree
 Plug 'scrooloose/nerdtree'
+
 " toggle on leader n or Ctrl-n
 map <leader>n :NERDTreeToggle<CR>
 map <C-n> :NERDTreeToggle<CR>
@@ -395,10 +399,13 @@ Plug 'kshenoy/vim-signature'
 "Plug 'Buffergator'
 
 " Language Server Protocol (LSP)
+" Note: Using neoclide coc and bash-language-server instead
 " This plugin is a collection of common configurations for the build in
 " language server client.
 " coc-sh (shell) uses LSP for example
-Plug 'neovim/nvim-lspconfig'
+" Note: Requires neovim 0.8 and above
+" Plug 'neovim/nvim-lspconfig'
+
 " Arduino syntax highlighting
 Plug 'sudar/vim-arduino-syntax'
 
@@ -406,10 +413,14 @@ Plug 'sudar/vim-arduino-syntax'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " set coc path in .profile instead. Could be in .bashrc, but then gui launch path is wrong?? Not sure about this.
 " let g:coc_node_path = '/home/jcsheeron/.nvm/versions/node/v16.10.0/bin/node'
+
+" Snippets
 " Used honza/vim-snippets as the snippet source. Made a copy in a folder I could control and then
 " removed it so I had control of the snippets
 "Plug 'honza/vim-snippets'
-let g:coc_global_extensions = ['coc-clangd', 'coc-css', 'coc-html', 'coc-json', 'coc-prettier', 'coc-pyright', 'coc-snippets', 'coc-sh', 'coc-toml', 'coc-tsserver', 'coc-yaml']
+
+" coc extensions
+let g:coc_global_extensions = ['coc-clangd', 'coc-css', 'coc-diagnostic', 'coc-html', 'coc-json', 'coc-prettier', 'coc-pyright', 'coc-snippets', 'coc-sh', 'coc-toml', 'coc-tsserver', 'coc-yaml']
 
 " ISort to sort python imports
 Plug 'brentyi/isort.vim'
@@ -607,7 +618,7 @@ augroup END
 " configurable status line
 Plug 'itchyny/lightline.vim'      
     let g:lightline = {
-    \ 'colorscheme': 'wombat',
+    \ 'colorscheme': 'sonokai',
     \ 'active': {
     \ 'left': [ ['mode', 'paste'],
     \         ['readonly', 'filename', 'modified', 'spell', 'syntastic', 'pencilMode'] ],
@@ -631,7 +642,8 @@ Plug 'itchyny/lightline.vim'
     \ 'component_expand': { 'syntastic': 'SyntasticStatuslineFlag' },
     \ 'component_type': { 'syntastic': 'error' }
     \}
-let g:lightline.colorscheme = 'palenight'
+" color scheme set above, but here as an alternate way to do it
+" let g:lightline.colorscheme = 'palenight'
 
 
 " use this funcion to display the spelling info in the status line.
@@ -731,11 +743,12 @@ let g:neomake_open_list=0 " don't open location-list on errors
 " ---------------------- LSP Setup ----------------------
 " For Bash Language Server using the nvim-lspconfig
 " This must go after call plug#end()
-lua require'lspconfig'.bashls.setup{}
+" Note: Using neoclide coc and bash-language-server instead
+" lua require'lspconfig'.bashls.setup{}
 
 
 " ---------------------- Color Schemes ----------------------
-"  Do after plugin stuff, otherwise there seems to be problems. Not sure why.
+"  Do after plugin stuff, otherwise there seems to be problems.
 
 " **** Color scheme (terminal)
 set t_Co=256
@@ -744,9 +757,19 @@ if (has("termguicolors"))
   set termguicolors                                                                    
 endif
 
-" Palenight
+" tell vim to adjust colorscheme for what is 'inherited' from the terminal 
 set background=dark
-colorscheme palenight
+
+" For plugins, generally set options before settign colorscheme
+" Lightline colors set above
+
+" Palenight
+" colorscheme palenight
+
+" Sonokai
+"let g:sonokai_style = 'andromeda'
+let g:sonokai_better_performance = 1
+colorscheme sonokai
 
 " Solarized
 "let g:solarized_termcolors=256
