@@ -767,6 +767,13 @@ set background=dark
 " colorscheme palenight
 
 " Sonokai
+
+" The style of this color scheme.
+"
+"    Type:               |String|
+"    Available values:   `'default'`, `'atlantis'`, `'andromeda'`, `'shusia'`, `'maia'`,
+"    `'espresso'`
+"    Default value:      `'default'`
 "let g:sonokai_style = 'andromeda'
 let g:sonokai_better_performance = 1
 colorscheme sonokai
