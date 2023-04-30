@@ -416,7 +416,6 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Note the coc-settings.json file for many coc configuration options.
 " Formatting and linting options for example may be set in the coc-settings.json file.
 
-
 " Snippets
 " Used honza/vim-snippets as the snippet source. Made a copy in a folder I could control and then
 " removed it so I had control of the snippets
@@ -770,6 +769,13 @@ set background=dark
 " colorscheme palenight
 
 " Sonokai
+
+" The style of this color scheme.
+"
+"    Type:               |String|
+"    Available values:   `'default'`, `'atlantis'`, `'andromeda'`, `'shusia'`, `'maia'`,
+"    `'espresso'`
+"    Default value:      `'default'`
 "let g:sonokai_style = 'andromeda'
 let g:sonokai_better_performance = 1
 colorscheme sonokai
