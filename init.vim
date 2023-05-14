@@ -348,6 +348,11 @@ set wildmode=list:longest
 filetype off
 filetype plugin indent off
 
+" tell neovim which python to use for python plugins. I created a python
+" virtual environment using the system installed version of python3, and
+" installed pynvim using pip in that venv.
+let g:python3_host_prog = '$HOME/.config/pyenvs/nvim-venv/bin/python' 
+
 " tell NeoVim where to find NodeJs. Helpful when nvm is used and different versions
 " are installed. Sometimes this causes issues with right click launch
 " let g:node_host_prog = '/home/jcsheeron/.nvm/versions/node/v13.3.0/lib/node_modules/neovim/bin/'
@@ -855,11 +860,11 @@ setlocal formatoptions-=o
 " This is bbecause calling the CocAction like below manually works,
 " but relying on coc format on save does not work because it times out
 " before the formatting is done, and the file is left saved but unchanged.
-" aug python
-"   au!
-"   autocmd BufWritePre *.py :Isort
-"   autocmd BufWritePre *.py call CocAction('format')
-" aug END
+aug python
+  au!
+  " autocmd BufWritePre *.py :Isort
+  autocmd BufWritePre *.py call CocAction('format')
+aug END
 
 " ---------------------- USER FUNCTIONS ----------------------
 " sudo read using suda.vim plugin

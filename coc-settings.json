@@ -1,6 +1,9 @@
 {
   // coc preferences
 
+  // NOTE: ~ and $HOME are not expanded, and can't be used here and
+  // work as expected. use ${env:HOME}
+
   // Note: Python format on save with black seems to timeout, and not
   // format the file. The willSaveHandlerTimeout property didn't seem
   // to fix it. Work around: Remove python from the list below,
@@ -27,7 +30,7 @@
   // coc-snippets make vim select first item on completion
   // snippets preferences
   "suggest.noselect": false,
-  "snippets.userSnippetsDirectory": "$HOME/.config/nvim/snippets",
+  "snippets.userSnippetsDirectory": "${env:HOME}/.config/nvim/snippets",
   "snippets.extends": {
     // extend file type snippets with other file types
     "cpp": ["c"],
@@ -54,7 +57,7 @@
   //  "eslint.autoFixOnSave": false,
   //  "eslint.run": "onSave",
   //  "eslint.packageManager": "npm",
-  // "eslint.options": {"configFile": "$HOME/.config/nvim/.eslintrc.js"},
+  // "eslint.options": {"configFile": "${env:HOME}/.config/nvim/.eslintrc.js"},
 
   // coc-prettier (for js and related)
   "prettier.singleQuote": true,
@@ -79,20 +82,21 @@
   "javascript.format.insertSpaceAfterFunctionKeywordForAnonymousFunctions": true,
   "javascript.preferences.quoteStyle": "single",
 
-  // python pyright related
+  // python and pyright related
   "pyright.organizeimports.provider": "isort",
-  "python.sortImports.path": "$HOME/.local/bin/isort",
+  "python.sortImports.path": "${env:HOME}/.local/bin/isort",
   // use project config file
   // "python.sortImports.args": ["--profile", "black"],
   "python.formatting.provider": "black",
-  "python.formatting.blackPath": "$HOME/.local/bin/black",
+  "python.formatting.blackPath": "${env:HOME}/.config/pyenvs/nvim-venv/bin/black",
   "python.formatting.blackArgs": [],
   "python.linting.enabled": true,
   "python.linting.pylintEnabled": true,
   "python.linting.pylintArgs": ["--max-line-length=88"],
 
-  // bash language server
+  // language servers
   "languageserver": {
+    // bash
     "bash": {
       "command": "bash-language-server",
       "args": ["start"],
@@ -115,7 +119,8 @@
     "sh": "shellcheck"
   },
   "diagnostic-languageserver.formatFiletypes": {
-    "python": ["black", "isort"],
+    // use pyright for python (above) instesd`
+    // "python": ["black", "isort"],
     "bash": "shfmt",
     "sh": "shfmt"
   },
