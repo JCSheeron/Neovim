@@ -348,6 +348,13 @@ set wildmode=list:longest
 filetype off
 filetype plugin indent off
 
+" tell neovim which python to use for python plugins. I created a python
+" virtual environment using the system installed version of python3, and
+" installed pynvim using pip in that venv.
+" let g:python3_host_prog = '$HOME/.config/pyenvs/nvim-venv/bin/python' 
+" OR use the installed one (not in a venv)
+let g:python3_host_prog = '/usr/local/bin/python3.9' 
+
 " tell NeoVim where to find NodeJs. Helpful when nvm is used and different versions
 " are installed. Sometimes this causes issues with right click launch
 " let g:node_host_prog = '/home/jcsheeron/.nvm/versions/node/v13.3.0/lib/node_modules/neovim/bin/'
@@ -398,13 +405,10 @@ Plug 'kshenoy/vim-signature'
 " Use Denite instead
 "Plug 'Buffergator'
 
-" Language Server Protocol (LSP)
-" Note: Using neoclide coc and bash-language-server instead
-" This plugin is a collection of common configurations for the build in
-" language server client.
-" coc-sh (shell) uses LSP for example
-" Note: Requires neovim 0.8 and above
-" Plug 'neovim/nvim-lspconfig'
+" Bash language server
+" Note: Using neoclide coc and bash-language-server
+" coc-sh needs bash-language-server installed:
+" npm install -g bash-language-server
 
 " Arduino syntax highlighting
 Plug 'sudar/vim-arduino-syntax'
@@ -742,13 +746,6 @@ let g:neomake_open_list=0 " don't open location-list on errors
 " let g:neomake_open_list=2 " open location-list on errors
 " let g:neomake_logfile ='/home/vmuser1/Desktop/neomake.log'
 
-" ---------------------- LSP Setup ----------------------
-" For Bash Language Server using the nvim-lspconfig
-" This must go after call plug#end()
-" Note: Using neoclide coc and bash-language-server instead
-" lua require'lspconfig'.bashls.setup{}
-
-
 " ---------------------- Color Schemes ----------------------
 "  Do after plugin stuff, otherwise there seems to be problems.
 
@@ -855,11 +852,11 @@ setlocal formatoptions-=o
 " This is bbecause calling the CocAction like below manually works,
 " but relying on coc format on save does not work because it times out
 " before the formatting is done, and the file is left saved but unchanged.
-" aug python
-"   au!
-"   autocmd BufWritePre *.py :Isort
-"   autocmd BufWritePre *.py call CocAction('format')
-" aug END
+aug python
+  au!
+  " autocmd BufWritePre *.py :Isort
+  autocmd BufWritePre *.py call CocAction('format')
+aug END
 
 " ---------------------- USER FUNCTIONS ----------------------
 " sudo read using suda.vim plugin

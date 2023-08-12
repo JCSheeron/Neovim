@@ -88,7 +88,7 @@
   // use project config file
   // "python.sortImports.args": ["--profile", "black"],
   "python.formatting.provider": "black",
-  "python.formatting.blackPath": "${env:HOME}/.config/pyenvs/nvim-venv/bin/black",
+  "python.formatting.blackPath": "${env:HOME}/.local/bin/black",
   "python.formatting.blackArgs": [],
   "python.linting.enabled": true,
   "python.linting.pylintEnabled": true,
@@ -136,5 +136,6 @@
     "offsetColumn": 0,
     "sourceName": "shellcheck",
     "ignore": [".git", "dist/"]
-  }
+  },
+  "snippets.ultisnips.pythonPrompt": false
 }
