@@ -103,7 +103,9 @@ set splitright
 " Allow saving of files as sudo when I forgot to open them as sudo.
 " This sends the buffer contents to the shell command tee which is run as sudo,
 " and writes the buffer to the current file name
-cmap Sw w !sudo tee > /dev/null %
+" Does not work with Neovim.
+" Instead use Plug 'lambdalisue/suda.vim' plugin below
+" cmap Sw w !sudo tee > /dev/null %
 
 " remap j and k to scroll by visual lines
 nnoremap j gj
