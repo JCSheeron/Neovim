@@ -355,10 +355,10 @@ let g:python3_host_prog = '$HOME/.config/pyenvs/nvim-venv/bin/python'
 
 " tell NeoVim where to find NodeJs. Helpful when nvm is used and different versions
 " are installed. Sometimes this causes issues with right click launch
-let g:node_host_prog = '/home/teamparent/.nvm/versions/node/v25.2.1/bin/neovim-node-host'
+let g:node_host_prog = '$HOME/.nvm/versions/node/v25.3.0/bin/neovim-node-host'
 "
 " initiate vim-plug
-call plug#begin('~/.config/nvim/bundle/')
+call plug#begin('$HOME/.config/nvim/bundle/')
 
 " allow writing as sudo if you forgot to open the file as sudo
 " :SudaRead -- reopen current file as sudo
@@ -417,7 +417,7 @@ Plug 'sudar/vim-arduino-syntax'
 " coc for auto complete, linting, code fixing
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " set coc path in .profile instead. Could be in .bashrc, but then gui launch path is wrong?? Not sure about this.
-let g:coc_node_path = '/home/teamparent/.nvm/versions/node/v25.2.1/bin/node'
+let g:coc_node_path = '$HOME/.nvm/versions/node/v25.3.0/bin/node'
 
 " Snippets
 " Used honza/vim-snippets as the snippet source. Made a copy in a folder I could control and then
